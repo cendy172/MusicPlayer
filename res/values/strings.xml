@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">test_67_MediaPlayer_Music</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_music">MusicActivity</string>
+	<string name="music_tab">音乐</string>
+	<string name="musiclist_tab">播放列表</string>
+	<string name="recent_tab">最近播放</string>
+	<string name="artist_tab">专辑/歌手</string>
+	
+</resources>

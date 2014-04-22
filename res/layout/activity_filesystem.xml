@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/filesystem_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:background="@drawable/filesystem_top"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip" >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:scaleType="centerInside"
+            android:background="@drawable/transparent"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/addto"
+            android:layout_width="wrap_content"
+            android:layout_height="30dip"
+            android:layout_centerInParent="true"
+            android:enabled="false"
+            android:text="添加"
+            android:textSize="20sp" />
+
+        <CheckBox
+            android:id="@+id/allselecte"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dip"
+            android:checked="false"
+            android:enabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dip"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/allselecte"
+            android:text="全选"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="该目录下没有音频文件"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/folders"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@drawable/transparent"
+        android:listSelector="@drawable/listitem_selector" />
+
+    <ListView
+        android:id="@+id/musics"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:cacheColorHint="@drawable/transparent"
+        android:listSelector="@drawable/listitem_selector" />
+
+</LinearLayout>

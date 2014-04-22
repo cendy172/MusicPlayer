@@ -1,0 +1,153 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparent"
+            android:orientation="vertical" >
+
+            <RadioGroup
+                android:id="@+id/main_radio"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_gravity="top"
+                android:background="@drawable/home_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio_button0"
+                    style="@style/home_tab_style"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:drawableTop="@drawable/home_music_selector"
+                    android:enabled="false" />
+
+                <RadioButton
+                    android:id="@+id/radio_button1"
+                    style="@style/home_tab_style"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_musiclist_selector" />
+
+                <RadioButton
+                    android:id="@+id/radio_button2"
+                    style="@style/home_tab_style"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_recent_selector" />
+
+                <!--
+                <RadioButton
+                    android:id="@+id/radio_button3"
+                    android:layout_marginTop="2.0dip"
+                    android:text="专辑/歌手" />
+                -->
+            </RadioGroup>
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.0"
+                android:visibility="gone" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </LinearLayout>
+    </TabHost>
+
+    <LinearLayout
+        android:id="@+id/controlbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#00000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip" >
+
+        <ImageButton
+            android:id="@+id/mode"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:background="@drawable/transparent"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/last"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_weight="2"
+            android:background="@drawable/controlbar_selector"
+            android:scaleType="centerInside"
+            android:src="@drawable/controlbar_last" />
+
+        <ImageButton
+            android:id="@+id/play_pause"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_weight="2"
+            android:background="@drawable/controlbar_selector"
+            android:scaleType="centerInside"
+            android:src="@drawable/controlbar_play" />
+
+        <ImageButton
+            android:id="@+id/next"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_weight="2"
+            android:background="@drawable/controlbar_selector"
+            android:scaleType="centerInside"
+            android:src="@drawable/controlbar_next" />
+
+        <ImageButton
+            android:id="@+id/volume"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:background="@drawable/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/controlbar_volume" />
+    </LinearLayout>
+
+    <!--  -->
+
+    <FrameLayout
+        android:id="@+id/frameVolume"
+        android:layout_width="30dip"
+        android:layout_height="165dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dip"
+        android:layout_marginRight="20dip" >
+
+        <com.liqing.views.VolumeView
+            android:id="@+id/volumeview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</RelativeLayout>

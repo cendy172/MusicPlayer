@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="40dip"
+    android:gravity="center_vertical"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/listitem_selector" >
+
+    <ImageView
+        android:id="@+id/music_show"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:background="#00000000" />
+
+    <TextView
+        android:id="@+id/music_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/music_show"
+        android:text="No data"
+        android:textSize="26sp" />
+
+    <CheckBox
+        android:id="@+id/music_selecte"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dip"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false" />
+
+</RelativeLayout>
