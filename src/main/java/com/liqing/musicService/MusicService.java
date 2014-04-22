@@ -1,17 +1,7 @@
 package com.liqing.musicService;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -22,19 +12,19 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.animation.AnimationUtils;
-
 import com.liqing.R;
 import com.liqing.activities.MusicActivity;
 import com.liqing.bean.Music;
 import com.liqing.bean.MusicList;
 import com.liqing.mediaplayer_music.MainActivity;
-import com.liqing.util.FileUtil;
-import com.liqing.util.LrcProcess;
-import com.liqing.util.MyNotification;
-import com.liqing.util.NetUtil;
-import com.liqing.util.PreferenceKeys;
+import com.liqing.util.*;
 import com.liqing.util.LrcProcess.LrcContent;
-import com.liqing.musicService.MusicServiceAIDL;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MusicService extends Service {
 
@@ -43,22 +33,22 @@ public class MusicService extends Service {
 	private final static int PAUSE = 1;
 	private final static int PLAYING = 2;
 	private final static int START = 3;
-	private int state = START;// ²¥·Å×´Ì¬±êÖ¾
+	private int state = START;// ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½Ö¾
 	
-	public static int currentIndex = 0;// µ±Ç°²¥·ÅµÄµØ·½
+	public static int currentIndex = 0;// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ÅµÄµØ·ï¿½
 	public static String currentPath = null;
 	public static final String LIST_NAME = "listname";
 	public static final String ID = "id";
 	public static String duration = null;
 	public static String musicName = null;
 	public static String singer = null;
-	public static String albumArt = null;// ×¨¼­·âÃæÃû
+	public static String albumArt = null;// ×¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public final static int Single = 1;
 	public final static int Circle = 2;
 	public final static int Random = 3;
 
-	public static int State;// ²¥·ÅÄ£Ê½
+	public static int State;// ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 
 	private Random mRandom = null;
 
@@ -73,7 +63,7 @@ public class MusicService extends Service {
 
 	Handler mHandler = new Handler();
 
-	// ¸è´Ê¹ö¶¯Ïß³Ì
+	// ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 	Runnable mRunnable = new Runnable() {
 
 		@Override
@@ -138,14 +128,14 @@ public class MusicService extends Service {
 	}
 	
 	/**
-	 * ¸è´ÊÍ¬²½´¦ÀíÀà
+	 * ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public int LrclrcIndex() {
 
 		if (mediaPlayer.isPlaying()) {
-			// »ñµÃ¸èÇú²¥·ÅÔÚÄÄµÄÊ±¼ä
+			// ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ê±ï¿½ï¿½
 			CurrentTime = mediaPlayer.getCurrentPosition();
-			// »ñµÃ¸èÇú×ÜÊ±¼ä³¤¶È
+			// ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä³¤ï¿½ï¿½
 			CountTime = mediaPlayer.getDuration();
 		}
 
@@ -170,14 +160,14 @@ public class MusicService extends Service {
 		return lrcIndex;
 	}
 
-	// ´´½¨¶ÔÏó
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private List<LrcContent> lrcList = new ArrayList<LrcContent>();
 
-	// ³õÊ¼»¯¸è´Ê¼ìË÷Öµ
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Öµ
 	public static int lrcIndex = 0;
-	// ³õÊ¼»¯¸èÇú²¥·ÅÊ±¼äµÄ±äÁ¿
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 	public static int CurrentTime = 0;
-	// ³õÊ¼»¯¸èÇú×ÜÊ±¼äµÄ±äÁ¿
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 	public static int CountTime = 0;
 
 	private final MusicServiceAIDL.Stub musicServiceBinder = new MusicServiceAIDL.Stub() {
@@ -249,28 +239,28 @@ public class MusicService extends Service {
 		}
 	};
 
-	// ½ÓÊÕÍâ²¿°´¼ü´¦Àí
+	// ï¿½ï¿½ï¿½ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private BroadcastReceiver playKeyDownReceiver = new BroadcastReceiver() {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			KeyEvent keyEvent = intent
-					.getParcelableExtra(Intent.EXTRA_KEY_EVENT);// Íâ²¿°´¼üÊÂ¼þ
+					.getParcelableExtra(Intent.EXTRA_KEY_EVENT);// ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
 
-			// ²¥·Å»òÔÝÍ£
+			// ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½Í£
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
-				// ÕýÔÚ²¥·Å£¬ÔòÔÝÍ£ÁË
+				// ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½
 				if (isPlaying()) {
 					pauseMusic();
 				} else {
 					playMusic(currentIndex);
 				}
 			}
-			// ÏÂÒ»Çú
+			// ï¿½ï¿½Ò»ï¿½ï¿½
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_NEXT) {
 				nextMusic();
 			}
-			// ÉÏÒ»Çú
+			// ï¿½ï¿½Ò»ï¿½ï¿½
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PREVIOUS) {
 				lastMusic();
 			}
@@ -279,19 +269,19 @@ public class MusicService extends Service {
 				stopMusic();
 			}
 
-			// ¿ì½ø
+			// ï¿½ï¿½ï¿½
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) {
-				// ´ýÍê³É
+				// ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 
-			// ¿ìÍË
+			// ï¿½ï¿½ï¿½ï¿½
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_REWIND) {
-				// ´ýÍê³É
+				// ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 	};
 
-	// »ñµÃ²¥·Å¸èÇúµÄCursorºÍposition
+	// ï¿½ï¿½Ã²ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½Cursorï¿½ï¿½position
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -309,7 +299,7 @@ public class MusicService extends Service {
 
 	@Override
 	public void onCreate() {
-		mediaPlayer = MediaPlayer.create(MusicService.this, R.raw.ring);// ²¥·ÅÆô¶¯Òô
+		mediaPlayer = MediaPlayer.create(MusicService.this, R.raw.ring);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		mediaPlayer.start();
 		super.onCreate();
 
@@ -318,7 +308,7 @@ public class MusicService extends Service {
 		
 		MusicService.lrcProcess = new LrcProcess();
 
-		// ¶¯Ì¬°ó¶¨Íâ²¿Ã½Ìå²¥·ÅÔÝÍ£µÈ°´¼ü½ÓÊÕÆ÷
+		// ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½â²¿Ã½ï¿½å²¥ï¿½ï¿½ï¿½ï¿½Í£ï¿½È°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		this.registerReceiver(playKeyDownReceiver, new IntentFilter(
 				Intent.ACTION_MEDIA_BUTTON));
 
@@ -332,8 +322,8 @@ public class MusicService extends Service {
 				"");
 		duration = sharedPreferences.getString(PreferenceKeys.DURATION, "0");
 		musicName = sharedPreferences
-				.getString(PreferenceKeys.MUSIC_NAME, "¸èÃû");
-		singer = sharedPreferences.getString(PreferenceKeys.SINGER, "¸èÊÖ");
+				.getString(PreferenceKeys.MUSIC_NAME, "ï¿½ï¿½ï¿½ï¿½");
+		singer = sharedPreferences.getString(PreferenceKeys.SINGER, "ï¿½ï¿½ï¿½ï¿½");
 		State = sharedPreferences.getInt(PreferenceKeys.MODE, Circle);
 		albumArt = sharedPreferences.getString(PreferenceKeys.ALBUMART, null);
 		lrcProcess.readLRC(currentPath);
@@ -354,10 +344,10 @@ public class MusicService extends Service {
 				// Cursor cursor =
 				// musicList.getListMusic(MusicList.DEFAULT_TABLE_NAME);
 
-				// ¸üÐÂ¸èÇúµ½Ä¬ÈÏÁÐ±í
+				// ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½ï¿½Ð±ï¿½
 				updateDefaultList(FileUtil.SDCardRoot + FileUtil.MUSICPATH);
 
-				// // ************ÏÂÔØ×¨¼­·âÃæ 150*150µÄÍ¼**************
+				// // ************ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 150*150ï¿½ï¿½Í¼**************
 				// int index = currentIndex;
 				//
 				// Cursor tempCursor = musicList
@@ -408,7 +398,7 @@ public class MusicService extends Service {
 				// }
 				// }
 				//
-				// // ************ÏÂÔØ¸è´Ê**************
+				// // ************ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½**************
 				// for (int i = index; i < tempCursor.getCount(); i++) {
 				// tempCursor.moveToPosition(i);
 				// String tempmusicname = tempCursor.getString(tempCursor
@@ -451,7 +441,7 @@ public class MusicService extends Service {
 				// }
 				// }
 
-				// ************ÏÂÔØ¸èÊÖÍ·Ïñ**************
+				// ************ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½Í·ï¿½ï¿½**************
 				// for (int i = index; i < tempCursor.getCount(); i++) {
 				// tempCursor.moveToPosition(i);
 				// String tempmusicname = tempCursor.getString(tempCursor
@@ -508,7 +498,7 @@ public class MusicService extends Service {
 			if (files[i].isDirectory()) {
 				updateDefaultList(files[i].getAbsolutePath());
 			} else if (files[i].getName().contains(".mp3")) {
-				// ±£´æµ½Êý¾Ý¿â
+				// ï¿½ï¿½ï¿½æµ½ï¿½ï¿½Ý¿ï¿½
 				Music music = MusicList.getMusic(getApplicationContext(),
 						files[i].getAbsolutePath());
 				NetUtil netUtil = new NetUtil(getApplicationContext());
@@ -520,7 +510,7 @@ public class MusicService extends Service {
 					musicList.saveToList(music, MusicList.DEFAULT_TABLE_NAME);
 					netUtil.downloadAlbumArt();
 				}
-				// ÏÂÔØ×¨¼­·âÃæºÍ¸è´Ê
+				// ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½
 				netUtil.downloadLrc();
 			}
 		}
@@ -528,7 +518,7 @@ public class MusicService extends Service {
 
 	@Override
 	public void onDestroy() {
-		// È¡Ïû¶¯Ì¬°ó¶¨
+		// È¡ï¿½ï¿½Ì¬ï¿½ï¿½
 		this.unregisterReceiver(playKeyDownReceiver);
 		musicList.closeDatabase();
 	}
@@ -537,8 +527,8 @@ public class MusicService extends Service {
 	 * getPath
 	 * 
 	 * @param id
-	 *            ÒôÀÖµÄË÷ÒýºÅ
-	 * @return path ¶ÔÓ¦Ë÷ÒýºÅµÄÒôÀÖµÄÂ·¾¶
+	 *            ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @return path ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½Öµï¿½Â·ï¿½ï¿½
 	 */
 	private String getPath(int id) {
 
@@ -612,13 +602,13 @@ public class MusicService extends Service {
 				mediaPlayer.setDataSource(path);
 				mediaPlayer.prepare();
 				mediaPlayer.seekTo(MusicActivity.progress.getProgress()
-						* Integer.valueOf(duration) / 100);// ²¥·ÅÇ°ÉèÖÃÁË½ø¶ÈµÄÊ±ºò¾ÍÓÐÓÃ
+						* Integer.valueOf(duration) / 100);// ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½Èµï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				if(state == PLAYING || state == START){
 					mediaPlayer.start();
-					// ÇÐ»»´ø¶¯»­ÏÔÊ¾¸è´Ê
+					// ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½
 						MusicActivity.lrcView.setAnimation(AnimationUtils
 							.loadAnimation(MusicService.this, R.anim.alpha_z));
-					 //Æô¶¯Ïß³Ì
+					 //ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 					mHandler.post(mRunnable);
 					state = PLAYING;
 				}

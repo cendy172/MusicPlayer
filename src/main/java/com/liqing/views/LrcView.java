@@ -1,8 +1,5 @@
 package com.liqing.views;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,13 +8,15 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
-
 import com.liqing.activities.MusicActivity;
 import com.liqing.bean.Music;
 import com.liqing.util.LrcProcess.LrcContent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * ×Ô¶¨Òå»æ»­¸è´Ê£¬²úÉú¹ö¶¯Ð§¹û
+ * ï¿½Ô¶ï¿½ï¿½ï¿½æ»­ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
  */
 public class LrcView extends TextView {
 
@@ -29,7 +28,7 @@ public class LrcView extends TextView {
 	private Paint timePaint;
 	public static float TextHigh = 50;
 	private float TextSize = 28;
-	private int Index = 0;// µ±Ç°¾äµÄindex
+	private int Index = 0;// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½index
 	private int x, y;
 	
 
@@ -41,7 +40,7 @@ public class LrcView extends TextView {
 		this.mSentenceEntities = mSentenceEntities;
 	}
 
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
@@ -49,7 +48,7 @@ public class LrcView extends TextView {
 		this.x = x;
 	}
 
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
@@ -76,12 +75,12 @@ public class LrcView extends TextView {
 	private void init() {
 		setFocusable(true);
 
-		// ¸ßÁÁ²¿·Ö
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		CurrentPaint = new Paint();
 		CurrentPaint.setAntiAlias(true);
 		CurrentPaint.setTextAlign(Paint.Align.CENTER);
 
-		// ·Ç¸ßÁÁ²¿·Ö
+		// ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		NotCurrentPaint = new Paint();
 		NotCurrentPaint.setAntiAlias(true);
 		NotCurrentPaint.setTextAlign(Paint.Align.CENTER);
@@ -131,9 +130,9 @@ public class LrcView extends TextView {
 						width / 2, high / 2 + TextHigh - frame, CurrentPaint);
 				float tempY = high / 2 + TextHigh - frame;
 
-				// »­³ö±¾¾äÖ®Ç°µÄ¾ä×Ó
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½Ä¾ï¿½ï¿½ï¿½
 				for (int i = Index - 1; i >= 0; i--) {
-					// ÏòÉÏÍÆÒÆ
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					tempY = tempY - TextHigh;
 
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
@@ -142,9 +141,9 @@ public class LrcView extends TextView {
 
 				tempY = high / 2 + TextHigh - frame;
 
-				// »­³ö±¾¾äÖ®ºóµÄ¾ä×Ó
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
 				for (int i = Index + 1; i < mSentenceEntities.size(); i++) {
-					// ÍùÏÂÍÆÒÆ
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					tempY = tempY + TextHigh;
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
 							width / 2, tempY, NotCurrentPaint);
@@ -156,9 +155,9 @@ public class LrcView extends TextView {
 						width / 2, high / 2 + TextHigh +y%50, CurrentPaint);
 				float tempY = high / 2 + TextHigh +y%50;
 
-				// »­³ö±¾¾äÖ®Ç°µÄ¾ä×Ó
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½Ä¾ï¿½ï¿½ï¿½
 				for (int i = Index - 1; i >= 0; i--) {
-					// ÏòÉÏÍÆÒÆ
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					tempY = tempY - TextHigh;
 
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
@@ -167,9 +166,9 @@ public class LrcView extends TextView {
 
 				tempY = high / 2 + TextHigh+y%50 ;
 
-				// »­³ö±¾¾äÖ®ºóµÄ¾ä×Ó
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
 				for (int i = Index + 1; i < mSentenceEntities.size(); i++) {
-					// ÍùÏÂÍÆÒÆ
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					tempY = tempY + TextHigh;
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
 							width / 2, tempY, NotCurrentPaint);
