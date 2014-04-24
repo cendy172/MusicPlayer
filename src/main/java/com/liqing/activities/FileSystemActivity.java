@@ -34,8 +34,8 @@ import com.liqing.util.NetUtil;
 public class FileSystemActivity extends Activity implements OnClickListener {
 
 	private ArrayList<String> rootFolders, rootMusics, currentMusics,
-			currentFolders = null;// ±£´æ¸ùÄ¿Â¼ÎÄ¼ş¼ĞºÍÒôÀÖ
-	private Stack<String> pathsStack = null;// ±£´æÒÀ´ÎµÄ¾ø¶ÔÂ·¾¶
+			currentFolders = null;// ä¿å­˜æ ¹ç›®å½•æ–‡ä»¶å¤¹å’ŒéŸ³ä¹
+	private Stack<String> pathsStack = null;// ä¿å­˜ä¾æ¬¡çš„ç»å¯¹è·¯å¾„
 
 	private ArrayList<Integer> selectedPositions = null;
 
@@ -43,12 +43,12 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 
 	private MyBaseAdaper myBaseAdaper1, myBaseAdaper2;
 
-	private String listName = null;// ±£´æÒªÌí¼Óµ½µÄÁĞ±íÃû
+	private String listName = null;// ä¿å­˜è¦æ·»åŠ åˆ°çš„åˆ—è¡¨å
 	private MusicList musicList = null;
 
-	private ImageView back = null;// ·µ»ØÍ¼±ê
+	private ImageView back = null;// è¿”å›å›¾æ ‡
 	private TextView addTo = null;//
-	private CheckBox allSelect = null;// È«Ñ¡
+	private CheckBox allSelect = null;// å…¨é€‰
 	private ListView folders = null, musics = null;
 	
 	private int[] itemimg = { R.drawable.music_folder, R.drawable.music };
@@ -75,19 +75,19 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 
 		
 		this.listName = this.getIntent().getStringExtra(MusicList.LIST_NAME);
-		if(this.listName.equals("Ä¬ÈÏÁĞ±í")){
+		if(this.listName.equals("é»˜è®¤åˆ—è¡¨")){
 			this.listName = MusicList.DEFAULT_TABLE_NAME;
 		}
 
-		// É¨ÃèÎÄ¼ş
+		// æ‰«ææ–‡ä»¶
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
 			getAllfiles(Environment.getExternalStorageDirectory().toString());
 		}
 
-		// ¼ÓÔØListView
+		// åŠ è½½ListView
 
-		// É¨ÃèÎÄ¼şÍê±Ïºó£¬ÕıÔÚ¼ÓÔØÏÔÊ¾½á¾Ö£¬ÏÔÊ¾ÁĞ±í
+		// æ‰«ææ–‡ä»¶å®Œæ¯•åï¼Œæ­£åœ¨åŠ è½½æ˜¾ç¤ºç»“å±€ï¼Œæ˜¾ç¤ºåˆ—è¡¨
 		setContentView(R.layout.activity_filesystem);
 		this.folders = (ListView) this.findViewById(R.id.folders);
 		this.musics = (ListView) this.findViewById(R.id.musics);
@@ -100,7 +100,7 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 		this.addTo.setOnClickListener(this);
 		this.allSelect = (CheckBox) this.findViewById(R.id.allselecte);
 		
-		// È«Ñ¡
+		// å…¨é€‰
 		this.allSelect
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -177,7 +177,7 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 					viewHolder.music_select.setSelected(true);
 					isSelected.put(position, true);
 				}
-				viewHolder.music_select.toggle();// Õâ¾ä¸Ä±äCheckBoxµÄ×´Ì¬*****ÖØÒª
+				viewHolder.music_select.toggle();// è¿™å¥æ”¹å˜CheckBoxçš„çŠ¶æ€*****é‡è¦
 
 				myBaseAdaper2.notifyDataSetChanged();
 			}
@@ -186,9 +186,9 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 		setAdaper(rootFolders, rootMusics);
 	}
 
-	// ÓÃÓÚ¸üĞÂÁĞ±í
+	// ç”¨äºæ›´æ–°åˆ—è¡¨
 	private void setAdaper(ArrayList<String> folders, ArrayList<String> musics) {
-		// Èç¹ûÊÇroot,»»µ½²»ÊÇroot
+		// å¦‚æœæ˜¯root,æ¢åˆ°ä¸æ˜¯root
 		TextView textView = (TextView) this.findViewById(R.id.tip);
 		textView.setVisibility(View.GONE);
 		if (this.addTo.isEnabled() && this.allSelect.isEnabled()) {
@@ -222,7 +222,7 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 					if (files[i].isDirectory()) {
 						rootFolders.add(files[i].getName());
 					} else if (files[i].getName().contains(".mp3")) {
-						// °Ñ.mp3ÎÄ¼şµÄÃû×ÖºÍÂ·¾¶´æÏÂÀ´
+						// æŠŠ.mp3æ–‡ä»¶çš„åå­—å’Œè·¯å¾„å­˜ä¸‹æ¥
 						rootMusics.add(files[i].getName());
 					}
 				}
@@ -239,7 +239,7 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 					if (files[i].isDirectory()) {
 						currentFolders.add(files[i].getName());
 					} else if (files[i].getName().contains(".mp3")) {
-						// °Ñ.mp3ÎÄ¼şµÄÃû×ÖºÍÂ·¾¶´æÏÂÀ´
+						// æŠŠ.mp3æ–‡ä»¶çš„åå­—å’Œè·¯å¾„å­˜ä¸‹æ¥
 						currentMusics.add(files[i].getName());
 					}
 				}
@@ -249,10 +249,10 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	// ±£´æµ½Êı¾İ¿â
+	// ä¿å­˜åˆ°æ•°æ®åº“
 	private void saveToDatabase() {
 
-		MusicList.getMusicList(this);// ÖØĞÂµÃµ½ÏµÍ³µÄÃ½ÌåÊı¾İ¿â
+		MusicList.getMusicList(this);// é‡æ–°å¾—åˆ°ç³»ç»Ÿçš„åª’ä½“æ•°æ®åº“
 
 		ArrayList<String> music = null;
 		if (pathsStack.size() == 1) {
@@ -281,7 +281,7 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 			}
 		}
 		
-		// ÏÂÔØÕâ¸öÁĞ±íÀïÃæµÄ¸èÇúµÄ×¨¼­·âÃæºÍ¸è´Ê
+		// ä¸‹è½½è¿™ä¸ªåˆ—è¡¨é‡Œé¢çš„æ­Œæ›²çš„ä¸“è¾‘å°é¢å’Œæ­Œè¯
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -347,10 +347,10 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.back:
 			if (pathsStack.size() == 1) {
-				// ·µ»ØMainActivity
+				// è¿”å›MainActivity
 				this.finish();
 			} else {
-				// ·µ»ØRootÄ¿Â¼£¬ÖØĞÂÉèÖÃAdapterµÄÊı¾İ£¬´Ó¶ø´ïµ½ÇĞ»»½çÃæµÄĞ§¹û
+				// è¿”å›Rootç›®å½•ï¼Œé‡æ–°è®¾ç½®Adapterçš„æ•°æ®ï¼Œä»è€Œè¾¾åˆ°åˆ‡æ¢ç•Œé¢çš„æ•ˆæœ
 				int lastPosition = pathsStack.size() - 1;
 				pathsStack.remove(lastPosition);
 				getAllfiles(pathsStack.get(lastPosition - 1));
@@ -363,7 +363,7 @@ public class FileSystemActivity extends Activity implements OnClickListener {
 			}
 			break;
 		case R.id.addto:
-			final ProgressDialog progressDialog = ProgressDialog.show(FileSystemActivity.this, "Ìí¼Ó¸èÇúµ½"+listName, "ÕıÔÚÌí¼Ó£¬ÇëÉÔºò...",true);
+			final ProgressDialog progressDialog = ProgressDialog.show(FileSystemActivity.this, "æ·»åŠ æ­Œæ›²åˆ°"+listName, "æ­£åœ¨æ·»åŠ ï¼Œè¯·ç¨å€™...",true);
 			new Thread(){
 				@Override
 				public void run(){

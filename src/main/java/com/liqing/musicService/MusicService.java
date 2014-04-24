@@ -1,5 +1,6 @@
 package com.liqing.musicService;
 
+
 import android.app.Service;
 import android.content.*;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.animation.AnimationUtils;
+
 import com.liqing.R;
 import com.liqing.activities.MusicActivity;
 import com.liqing.bean.Music;
@@ -33,22 +35,22 @@ public class MusicService extends Service {
 	private final static int PAUSE = 1;
 	private final static int PLAYING = 2;
 	private final static int START = 3;
-	private int state = START;// ����״̬��־
+	private int state = START;// 播放状态标志
 	
-	public static int currentIndex = 0;// ��ǰ���ŵĵط�
+	public static int currentIndex = 0;// 当前播放的地方
 	public static String currentPath = null;
 	public static final String LIST_NAME = "listname";
 	public static final String ID = "id";
 	public static String duration = null;
 	public static String musicName = null;
 	public static String singer = null;
-	public static String albumArt = null;// ר��������
+	public static String albumArt = null;// 专辑封面名
 
 	public final static int Single = 1;
 	public final static int Circle = 2;
 	public final static int Random = 3;
 
-	public static int State;// ����ģʽ
+	public static int State;// 播放模式
 
 	private Random mRandom = null;
 
@@ -63,7 +65,7 @@ public class MusicService extends Service {
 
 	Handler mHandler = new Handler();
 
-	// ��ʹ����߳�
+	// 歌词滚动线程
 	Runnable mRunnable = new Runnable() {
 
 		@Override
@@ -128,14 +130,14 @@ public class MusicService extends Service {
 	}
 	
 	/**
-	 * ���ͬ��������
+	 * 歌词同步处理类
 	 */
 	public int LrclrcIndex() {
 
 		if (mediaPlayer.isPlaying()) {
-			// ��ø�������ĵ�ʱ��
+			// 获得歌曲播放在哪的时间
 			CurrentTime = mediaPlayer.getCurrentPosition();
-			// ��ø�����ʱ�䳤��
+			// 获得歌曲总时间长度
 			CountTime = mediaPlayer.getDuration();
 		}
 
@@ -160,14 +162,14 @@ public class MusicService extends Service {
 		return lrcIndex;
 	}
 
-	// ��������
+	// 创建对象
 	private List<LrcContent> lrcList = new ArrayList<LrcContent>();
 
-	// ��ʼ����ʼ���ֵ
+	// 初始化歌词检索值
 	public static int lrcIndex = 0;
-	// ��ʼ�������ʱ��ı���
+	// 初始化歌曲播放时间的变量
 	public static int CurrentTime = 0;
-	// ��ʼ��������ʱ��ı���
+	// 初始化歌曲总时间的变量
 	public static int CountTime = 0;
 
 	private final MusicServiceAIDL.Stub musicServiceBinder = new MusicServiceAIDL.Stub() {
@@ -239,49 +241,49 @@ public class MusicService extends Service {
 		}
 	};
 
-	// �����ⲿ������
+	// 接收外部按键处理
 	private BroadcastReceiver playKeyDownReceiver = new BroadcastReceiver() {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			KeyEvent keyEvent = intent
-					.getParcelableExtra(Intent.EXTRA_KEY_EVENT);// �ⲿ�����¼�
+					.getParcelableExtra(Intent.EXTRA_KEY_EVENT);// 外部按键事件
 
-			// ���Ż���ͣ
+			// 播放或暂停
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
-				// ���ڲ��ţ�����ͣ��
+				// 正在播放，则暂停了
 				if (isPlaying()) {
 					pauseMusic();
 				} else {
 					playMusic(currentIndex);
 				}
 			}
-			// ��һ��
+			// 下一曲
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_NEXT) {
 				nextMusic();
 			}
-			// ��һ��
+			// 上一曲
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PREVIOUS) {
 				lastMusic();
 			}
-			// ֹͣ
+			// 停止
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_STOP) {
 				stopMusic();
 			}
 
-			// ���
+			// 快进
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) {
-				// �����
+				// 待完成
 			}
 
-			// ����
+			// 快退
 			if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_MEDIA_REWIND) {
-				// �����
+				// 待完成
 			}
 		}
 	};
 
-	// ��ò��Ÿ����Cursor��position
+	// 获得播放歌曲的Cursor和position
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -299,7 +301,7 @@ public class MusicService extends Service {
 
 	@Override
 	public void onCreate() {
-		mediaPlayer = MediaPlayer.create(MusicService.this, R.raw.ring);// ����������
+		mediaPlayer = MediaPlayer.create(MusicService.this, R.raw.ring);// 播放启动音
 		mediaPlayer.start();
 		super.onCreate();
 
@@ -308,7 +310,7 @@ public class MusicService extends Service {
 		
 		MusicService.lrcProcess = new LrcProcess();
 
-		// ��̬���ⲿý�岥����ͣ�Ȱ��������
+		// 动态绑定外部媒体播放暂停等按键接收器
 		this.registerReceiver(playKeyDownReceiver, new IntentFilter(
 				Intent.ACTION_MEDIA_BUTTON));
 
@@ -322,8 +324,8 @@ public class MusicService extends Service {
 				"");
 		duration = sharedPreferences.getString(PreferenceKeys.DURATION, "0");
 		musicName = sharedPreferences
-				.getString(PreferenceKeys.MUSIC_NAME, "����");
-		singer = sharedPreferences.getString(PreferenceKeys.SINGER, "����");
+				.getString(PreferenceKeys.MUSIC_NAME, "歌名");
+		singer = sharedPreferences.getString(PreferenceKeys.SINGER, "歌手");
 		State = sharedPreferences.getInt(PreferenceKeys.MODE, Circle);
 		albumArt = sharedPreferences.getString(PreferenceKeys.ALBUMART, null);
 		lrcProcess.readLRC(currentPath);
@@ -344,10 +346,10 @@ public class MusicService extends Service {
 				// Cursor cursor =
 				// musicList.getListMusic(MusicList.DEFAULT_TABLE_NAME);
 
-				// ���¸���Ĭ���б�
+				// 更新歌曲到默认列表
 				updateDefaultList(FileUtil.SDCardRoot + FileUtil.MUSICPATH);
 
-				// // ************����ר������ 150*150��ͼ**************
+				// // ************下载专辑封面 150*150的图**************
 				// int index = currentIndex;
 				//
 				// Cursor tempCursor = musicList
@@ -398,7 +400,7 @@ public class MusicService extends Service {
 				// }
 				// }
 				//
-				// // ************���ظ��**************
+				// // ************下载歌词**************
 				// for (int i = index; i < tempCursor.getCount(); i++) {
 				// tempCursor.moveToPosition(i);
 				// String tempmusicname = tempCursor.getString(tempCursor
@@ -441,7 +443,7 @@ public class MusicService extends Service {
 				// }
 				// }
 
-				// ************���ظ���ͷ��**************
+				// ************下载歌手头像**************
 				// for (int i = index; i < tempCursor.getCount(); i++) {
 				// tempCursor.moveToPosition(i);
 				// String tempmusicname = tempCursor.getString(tempCursor
@@ -498,7 +500,7 @@ public class MusicService extends Service {
 			if (files[i].isDirectory()) {
 				updateDefaultList(files[i].getAbsolutePath());
 			} else if (files[i].getName().contains(".mp3")) {
-				// ���浽��ݿ�
+				// 保存到数据库
 				Music music = MusicList.getMusic(getApplicationContext(),
 						files[i].getAbsolutePath());
 				NetUtil netUtil = new NetUtil(getApplicationContext());
@@ -510,7 +512,7 @@ public class MusicService extends Service {
 					musicList.saveToList(music, MusicList.DEFAULT_TABLE_NAME);
 					netUtil.downloadAlbumArt();
 				}
-				// ����ר������͸��
+				// 下载专辑封面和歌词
 				netUtil.downloadLrc();
 			}
 		}
@@ -518,7 +520,7 @@ public class MusicService extends Service {
 
 	@Override
 	public void onDestroy() {
-		// ȡ��̬��
+		// 取消动态绑定
 		this.unregisterReceiver(playKeyDownReceiver);
 		musicList.closeDatabase();
 	}
@@ -527,8 +529,8 @@ public class MusicService extends Service {
 	 * getPath
 	 * 
 	 * @param id
-	 *            ���ֵ������
-	 * @return path ��Ӧ����ŵ����ֵ�·��
+	 *            音乐的索引号
+	 * @return path 对应索引号的音乐的路径
 	 */
 	private String getPath(int id) {
 
@@ -602,13 +604,13 @@ public class MusicService extends Service {
 				mediaPlayer.setDataSource(path);
 				mediaPlayer.prepare();
 				mediaPlayer.seekTo(MusicActivity.progress.getProgress()
-						* Integer.valueOf(duration) / 100);// ����ǰ�����˽�ȵ�ʱ�������
+						* Integer.valueOf(duration) / 100);// 播放前设置了进度的时候就有用
 				if(state == PLAYING || state == START){
 					mediaPlayer.start();
-					// �л�����ʾ���
+					// 切换带动画显示歌词
 						MusicActivity.lrcView.setAnimation(AnimationUtils
 							.loadAnimation(MusicService.this, R.anim.alpha_z));
-					 //�����߳�
+					 //启动线程
 					mHandler.post(mRunnable);
 					state = PLAYING;
 				}

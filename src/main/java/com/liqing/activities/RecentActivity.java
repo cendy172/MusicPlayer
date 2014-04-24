@@ -32,16 +32,16 @@ public class RecentActivity extends ListActivity {
 		}
 	}
 
-	// ÏÂÃæÁ½¸ö·½·¨Ê¹µÃActivityÔÚ¿É¼ûÊ±µ÷ÓÃ
+	// ä¸‹é¢ä¸¤ä¸ªæ–¹æ³•ä½¿å¾—Activityåœ¨å¯è§æ—¶è°ƒç”¨
 
-	// °ó¶¨Service
+	// ç»‘å®šService
 	@Override
 	public void onStart() {
 		super.onStart();
-		initView();// Ë¢ĞÂÁĞ±í
+		initView();// åˆ·æ–°åˆ—è¡¨
 	}
 
-	// ½â°ó¶¨Service
+	// è§£ç»‘å®šService
 	@Override
 	public void onStop() {
 		super.onStop();
@@ -52,7 +52,7 @@ public class RecentActivity extends ListActivity {
 		super.onRestart();
 	}
 
-	// ÓÃÓÚ´ÓLocalActivityManagerµ÷ÓÃ
+	// ç”¨äºä»LocalActivityManagerè°ƒç”¨
 	@Override
 	public void onContentChanged() {
 		super.onContentChanged();
@@ -64,7 +64,7 @@ public class RecentActivity extends ListActivity {
 		return super.onKeyDown(keycode, keyEvent);
 	}
 
-	// ¿É¼ûÊ±µ÷ÓÃ
+	// å¯è§æ—¶è°ƒç”¨
 	@Override
 	public void onResume() {
 		if(musicList == null){
@@ -87,7 +87,7 @@ public class RecentActivity extends ListActivity {
 		super.onResume();
 	}
 
-	// ²»¿É¼ûÊ±µ÷ÓÃ
+	// ä¸å¯è§æ—¶è°ƒç”¨
 	@Override
 	public void onPause() {
 		super.onPause();
@@ -109,7 +109,7 @@ public class RecentActivity extends ListActivity {
 	
 	@Override
 	public void onListItemClick(ListView listView, View v, int position, long id) {
-		// ²¥·ÅÑ¡ÔñÏî
+		// æ’­æ”¾é€‰æ‹©é¡¹
 		playMusic(position);
 	}
 	

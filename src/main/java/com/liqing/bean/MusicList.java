@@ -1,7 +1,5 @@
 package com.liqing.bean;
 
-import java.util.ArrayList;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,12 +8,13 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Audio.AudioColumns;
 import android.provider.MediaStore.MediaColumns;
-
 import com.liqing.listdatabase.ListDataBase;
+
+import java.util.ArrayList;
 
 public class MusicList {
 
-	public static final String LIST_NAME = "listname";// ÓÃÓÚ±£´æÁĞ±íÃûµÄÁĞÃû,ÕâĞ©ÁĞ±íÃûÍ¬Ê±×÷ÎªÆäËû±íµÄ±íÃû
+	public static final String LIST_NAME = "listname";// ç”¨äºä¿å­˜åˆ—è¡¨åçš„åˆ—å,è¿™äº›åˆ—è¡¨ååŒæ—¶ä½œä¸ºå…¶ä»–è¡¨çš„è¡¨å
 	private static volatile Cursor cursor = null;
 	private static int count = 0;
 	
@@ -25,10 +24,10 @@ public class MusicList {
 	private Context context = null;
 	public ListDataBase listDataBase;
 
-//	public static ArrayList<String> allMusicPathList = new ArrayList<String>();// ËùÓĞ¸èÇúµÄÂ·¾¶·ÖÀàÃûÁĞ±í
-//	public static ArrayList<List<String>> allMusicPathListData = new ArrayList<List<String>>();// Â·¾¶·ÖÀàÏÂµÄÁĞ±í
-	public static Cursor customListNameList;// ËùÓĞÓÃ»§´´½¨ÁĞ±íµÄ±íÃûÁĞ±í
-	public static ArrayList<Cursor> customListData = new ArrayList<Cursor>();// ËùÓĞÓÃ»§´´½¨ÁĞ±íµÄ±íÃûµÄÁĞ±í
+//	public static ArrayList<String> allMusicPathList = new ArrayList<String>();// æ‰€æœ‰æ­Œæ›²çš„è·¯å¾„åˆ†ç±»ååˆ—è¡¨
+//	public static ArrayList<List<String>> allMusicPathListData = new ArrayList<List<String>>();// è·¯å¾„åˆ†ç±»ä¸‹çš„åˆ—è¡¨
+	public static Cursor customListNameList;// æ‰€æœ‰ç”¨æˆ·åˆ›å»ºåˆ—è¡¨çš„è¡¨ååˆ—è¡¨
+	public static ArrayList<Cursor> customListData = new ArrayList<Cursor>();// æ‰€æœ‰ç”¨æˆ·åˆ›å»ºåˆ—è¡¨çš„è¡¨åçš„åˆ—è¡¨
 
 	public MusicList(Context context) {
 		this.context = context;
@@ -44,7 +43,7 @@ public class MusicList {
 
 	}
 
-	// ³ÖÓĞËùÓĞÁĞ±íµÄCursor²¢ÇÒÎªstatic,¿É¹©ËùÓĞactivity·½±ãÊ¹ÓÃ
+	// æŒæœ‰æ‰€æœ‰åˆ—è¡¨çš„Cursorå¹¶ä¸”ä¸ºstatic,å¯ä¾›æ‰€æœ‰activityæ–¹ä¾¿ä½¿ç”¨
 	public static Cursor getMusicList(Context context) {
 		if (cursor == null) {
 			synchronized (MusicList.class) {
@@ -105,7 +104,7 @@ public class MusicList {
 		return music;
 	}
 	
-	// Ë¢ĞÂÓÃ»§×Ô¶¨Òå²¥·ÅÁĞ±íµÄÃû×ÖÁĞ±í
+	// åˆ·æ–°ç”¨æˆ·è‡ªå®šä¹‰æ’­æ”¾åˆ—è¡¨çš„åå­—åˆ—è¡¨
 	public void refreshCustomListNameList() {
 		if(customListNameList != null && customListNameList.getCount() > 0)
 		{
@@ -114,7 +113,7 @@ public class MusicList {
 		customListNameList = getAllListName();
 	}
 
-	// Ë¢ĞÂËùÓĞÓÃ»§×Ô¶¨Òå²¥·ÅÁĞ±íµÄ¸èÇúÁĞ±í
+	// åˆ·æ–°æ‰€æœ‰ç”¨æˆ·è‡ªå®šä¹‰æ’­æ”¾åˆ—è¡¨çš„æ­Œæ›²åˆ—è¡¨
 	public void refreshCustomListData() {
 		if(customListData != null && customListData.size() > 0){
 			customListData.clear();
@@ -135,7 +134,7 @@ public class MusicList {
 		}
 	}
 
-	// ´ÓÊı¾İ¿â¶ÁÈëÊı¾İ
+	// ä»æ•°æ®åº“è¯»å…¥æ•°æ®
 	public static Cursor RefreshAllMusicList(Context context) {
 		if (cursor == null) {
 			synchronized (MusicList.class) {
@@ -150,7 +149,7 @@ public class MusicList {
 		return cursor;
 	}
 
-	// ½«Êı¾İÁĞ±íĞ´ÈëÓ¦ÓÃÊı¾İ¿â£¬´´½¨ĞÂÃüÃûµÄÁĞ±í
+	// å°†æ•°æ®åˆ—è¡¨å†™å…¥åº”ç”¨æ•°æ®åº“ï¼Œåˆ›å»ºæ–°å‘½åçš„åˆ—è¡¨
 	public boolean addListName(String listName) {
 		if (listDataBase == null) {
 			return false;
@@ -163,8 +162,8 @@ public class MusicList {
 						.getDefaultSharedPreferences(context);
 				count = sharedPreferences.getInt("count", 1);
 				listDataBase
-						.insertMusicList(listName, TABLENAME_STRING + count);// Ïò±£´æÁËÁĞ±íÃûºÍ±íÃûµÄ±íÖĞÌí¼ÓÊı¾İ
-				listDataBase.createTable(TABLENAME_STRING + count);// ´´½¨Ò»¸öÓëlistname¶ÔÓ¦µÄtablelistÃûµÄ¸èÇúÁĞ±í±í
+						.insertMusicList(listName, TABLENAME_STRING + count);// å‘ä¿å­˜äº†åˆ—è¡¨åå’Œè¡¨åçš„è¡¨ä¸­æ·»åŠ æ•°æ®
+				listDataBase.createTable(TABLENAME_STRING + count);// åˆ›å»ºä¸€ä¸ªä¸listnameå¯¹åº”çš„tableliståçš„æ­Œæ›²åˆ—è¡¨è¡¨
 				count++;
 				SharedPreferences.Editor editor = sharedPreferences.edit();
 				editor.putInt("count", count);
@@ -174,7 +173,7 @@ public class MusicList {
 		}
 	}
 
-	// ÖØÃüÃûÁĞ±í
+	// é‡å‘½ååˆ—è¡¨
 	public boolean changeListName(String oldName, String newName) {
 		if (listDataBase == null) {
 			return false;
@@ -188,7 +187,7 @@ public class MusicList {
 		}
 	}
 
-	// ½«Êı¾İÁĞ±íĞ´ÈëÓ¦ÓÃÊı¾İ¿â£¬positionÊÇÏµÍ³Êı¾İ¿âµÄCursorĞĞ£¬ĞÂÃüÃûµÄÁĞ±íÃû
+	// å°†æ•°æ®åˆ—è¡¨å†™å…¥åº”ç”¨æ•°æ®åº“ï¼Œpositionæ˜¯ç³»ç»Ÿæ•°æ®åº“çš„Cursorè¡Œï¼Œæ–°å‘½åçš„åˆ—è¡¨å
 	public void saveToList(Music music, String listName) {
 		String tablename = null;
 		if(listName.equals(DEFAULT_TABLE_NAME)){
@@ -200,15 +199,15 @@ public class MusicList {
 			tablename = "recent";
 			Cursor temp = listDataBase.getAllMusic("recent");
 			if (temp.getCount() == 20) {
-				// É¾³ı×îÉÏÃæµÄÒ»Ìõ£¬Ìí¼ÓÒ»ÌõÔÚ×îºó£¬ÅĞ¶ÏÊÇ·ñÓĞÖØ¸´
+				// åˆ é™¤æœ€ä¸Šé¢çš„ä¸€æ¡ï¼Œæ·»åŠ ä¸€æ¡åœ¨æœ€åï¼Œåˆ¤æ–­æ˜¯å¦æœ‰é‡å¤
 				if (listDataBase.hasExistListName("recent",
 						music.getMusicName())) {
-					// ´æÔÚÖØ¸´£¬Ôò°ÑÖØ¸´µÄÉ¾³ı£¬ĞÂµÄ¼Óµ½×îºó
+					// å­˜åœ¨é‡å¤ï¼Œåˆ™æŠŠé‡å¤çš„åˆ é™¤ï¼Œæ–°çš„åŠ åˆ°æœ€å
 					listDataBase.deleteRecord("recent",
 							listDataBase.getId("recent", music.getMusicName()));
 				} else {
-					// ²»´æÔÚÖØ¸´£¬Ôò°Ñ×îÔçÌí¼ÓµÄÉ¾³ı
-					temp.moveToLast();// ÒÆ¶¯µ½×îºó
+					// ä¸å­˜åœ¨é‡å¤ï¼Œåˆ™æŠŠæœ€æ—©æ·»åŠ çš„åˆ é™¤
+					temp.moveToLast();// ç§»åŠ¨åˆ°æœ€å
 					int early = temp.getInt(temp.getColumnIndex(Music.KEY_ID));
 					listDataBase.deleteRecord("recent", early);
 					temp.close();
@@ -218,13 +217,13 @@ public class MusicList {
 				boolean is = listDataBase.hasExistListName("recent",
 						music.getMusicName());
 				if (is) {
-					// ´æÔÚÖØ¸´£¬Ôò°ÑÖØ¸´µÄÉ¾³ı
+					// å­˜åœ¨é‡å¤ï¼Œåˆ™æŠŠé‡å¤çš„åˆ é™¤
 					listDataBase.deleteRecord("recent",
 							listDataBase.getId("recent", music.getMusicName()));
 				}
 			}
 		}
-		// ¼ÓÈë×îĞÂ²¥·ÅµÄ
+		// åŠ å…¥æœ€æ–°æ’­æ”¾çš„
 		listDataBase.insertRecord(tablename, music);
 	}
 	
@@ -233,15 +232,15 @@ public class MusicList {
 		this.listDataBase.updateAlbumArt(tableName, musicname, albumArt);
 	}
 
-	// É¾³ıÁĞ±í
+	// åˆ é™¤åˆ—è¡¨
 	public boolean deleteMusicList(int id, String listname) {
 		String tablename = listDataBase.getTableName(listname);
-		listDataBase.deleteRecord(ListDataBase.TABLE_NAME, id);// É¾³ı±£´æÁĞ±íµÄ
+		listDataBase.deleteRecord(ListDataBase.TABLE_NAME, id);// åˆ é™¤ä¿å­˜åˆ—è¡¨çš„
 		listDataBase.deleteTable(tablename);
 		return true;
 	}
 
-	// É¾³ı¼ÇÂ¼
+	// åˆ é™¤è®°å½•
 	public boolean deleteMusic(Music music, String listname) {
 		String tablename = null;
 		if (listname != "recent") {
@@ -258,13 +257,13 @@ public class MusicList {
 		return temp;
 	}
 
-	// ¶ÁÈ¡Ó¦ÓÃÊı¾İ¿âÖĞÖ¸¶¨ÁĞ±íÃûµÄÁĞ±íCursor
+	// è¯»å–åº”ç”¨æ•°æ®åº“ä¸­æŒ‡å®šåˆ—è¡¨åçš„åˆ—è¡¨Cursor
 	public Cursor getListMusic(String listName) {
 		if (listDataBase == null) {
 			return null;
 		} else {
 			if (listName.equals("recent")) {
-				return listDataBase.getAllMusic("recent");// Ö»±£´æ30¸ö£¬³¬¹ı30¸ö¾Í²»±£´æÁË
+				return listDataBase.getAllMusic("recent");// åªä¿å­˜30ä¸ªï¼Œè¶…è¿‡30ä¸ªå°±ä¸ä¿å­˜äº†
 			} else if(listName.equals(DEFAULT_TABLE_NAME)){
 				return listDataBase.getAllMusic(DEFAULT_TABLE_NAME);
 			}else{
@@ -274,17 +273,17 @@ public class MusicList {
 		}
 	}
 
-	// ½«Ó¦ÓÃÊı¾İ¿âÖĞÄ³ÁĞ±íÄÚµÄÄ³Ìõ¸èÇúÒÆ¶¯µ½ÁíÒ»ÁĞ±í
+	// å°†åº”ç”¨æ•°æ®åº“ä¸­æŸåˆ—è¡¨å†…çš„æŸæ¡æ­Œæ›²ç§»åŠ¨åˆ°å¦ä¸€åˆ—è¡¨
 	public void moveToList(Music music, String fromListName, String toListName) {
-		// ´ÓfromListNameÉ¾³ı
+		// ä»fromListNameåˆ é™¤
 		Music temp = listDataBase.getOneMusic(fromListName, music.getId());
 		listDataBase.deleteRecord(listDataBase.getTableName(fromListName),
 				music.getId());
-		// Ìí¼Óµ½±ítoListName
+		// æ·»åŠ åˆ°è¡¨toListName
 		listDataBase.insertRecord(listDataBase.getTableName(toListName), temp);
 	}
 
-	// ½«Ó¦ÓÃÊı¾İ¿âÖĞÄ³ÁĞ±íÄÚµÄÄ³Ìõ¸èÇú¸´ÖÆµ½ÁíÒ»ÁĞ±í
+	// å°†åº”ç”¨æ•°æ®åº“ä¸­æŸåˆ—è¡¨å†…çš„æŸæ¡æ­Œæ›²å¤åˆ¶åˆ°å¦ä¸€åˆ—è¡¨
 	public void copyToList(Music music, String fromListName, String toListName) {
 		Music temp = listDataBase.getOneMusic(fromListName, music.getId());
 		listDataBase.insertRecord(listDataBase.getTableName(toListName), temp);

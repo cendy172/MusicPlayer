@@ -18,12 +18,12 @@ import com.liqing.util.FileUtil;
 public class MusicView extends View {
 
 	private Context context = null;
-	private GestureDetector myGestureDetector = null ;//ÊÖÊÆ´¦Àí£¬ÔİÊ±Ã»ÓĞÊÖÊÆ´¦Àí
+	private GestureDetector myGestureDetector = null ;//æ‰‹åŠ¿å¤„ç†ï¼Œæš‚æ—¶æ²¡æœ‰æ‰‹åŠ¿å¤„ç†
 	private Bitmap bitmap = null,tag = null ;
 	private Paint myPaint = null ;
 	private float windowWidth = 0 ;
 	
-	//´ÓActivity³õÊ¼»¯µ÷ÓÃµÄ·½·¨
+	//ä»Activityåˆå§‹åŒ–è°ƒç”¨çš„æ–¹æ³•
 	public MusicView(Context context) {
 		super(context);
 		this.context = context;
@@ -33,7 +33,7 @@ public class MusicView extends View {
 		this.tag = BitmapFactory.decodeResource(getResources(), R.drawable.tag);
 	}
 	
-	//´Óxml²¼¾ÖÎÄ¼ş³õÊ¼»¯µÄ»Øµ÷·½·¨
+	//ä»xmlå¸ƒå±€æ–‡ä»¶åˆå§‹åŒ–çš„å›è°ƒæ–¹æ³•
 	public MusicView(Context context,AttributeSet attributeSet){
 		super(context,attributeSet);
 		this.context = context;
@@ -84,7 +84,7 @@ public class MusicView extends View {
 		@Override
 		public boolean onSingleTapUp(MotionEvent e) {
 			
-			//ÔÚÕâ¶ù´¦Àíµã»÷ÊÂ¼ş
+			//åœ¨è¿™å„¿å¤„ç†ç‚¹å‡»äº‹ä»¶
 			
 			return true;
 		}

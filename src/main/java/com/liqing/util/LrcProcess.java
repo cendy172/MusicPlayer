@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * ´¦Àí¸è´ÊÎÄ¼şµÄÀà
+ * å¤„ç†æ­Œè¯æ–‡ä»¶çš„ç±»
  */
 public class LrcProcess {
 
@@ -27,7 +27,7 @@ public class LrcProcess {
 	}
 
 	/**
-	 * ¶ÁÈ¡¸è´ÊÎÄ¼şµÄÄÚÈİ
+	 * è¯»å–æ­Œè¯æ–‡ä»¶çš„å†…å®¹
 	 */
 	public String readLRC(String song_path) {
 		// public void Read(String file){
@@ -45,10 +45,10 @@ public class LrcProcess {
 			String s = "";
 			while ((s = br.readLine()) != null) {
 				
-				// Ìæ»»×Ö·û
+				// æ›¿æ¢å­—ç¬¦
 				s = s.replace("]", "]@");
 
-				// ·ÖÀë"@"×Ö·û
+				// åˆ†ç¦»"@"å­—ç¬¦
 				String splitLrc_data[] = s.split("@");
 
 				int count = splitLrc_data.length;
@@ -56,7 +56,7 @@ public class LrcProcess {
 				if (count > 0) {
 					String content = "";
 					if(isTime(splitLrc_data[count - 1])){
-						content = ""; //ÕâĞĞÖ»ÓĞÊ±¼äÃ»ÓĞÄÚÈİ
+						content = ""; //è¿™è¡Œåªæœ‰æ—¶é—´æ²¡æœ‰å†…å®¹
 					}else{
 						content = splitLrc_data[count-1]; 
 					}
@@ -64,7 +64,7 @@ public class LrcProcess {
 						
 						mLrcContent.setLrc(content);
 						
-						if(isTime(splitLrc_data[i])){//ÓĞÊ±¼ä²Å½«ÄÚÈİºÍÊ±¼ä¼Ó½ø¸è´Ê
+						if(isTime(splitLrc_data[i])){//æœ‰æ—¶é—´æ‰å°†å†…å®¹å’Œæ—¶é—´åŠ è¿›æ­Œè¯
 							splitLrc_data[i] = splitLrc_data[i].replace("[", "");
 							splitLrc_data[i] = splitLrc_data[i].replace("]", "");
 							int LrcTime = TimeStr(splitLrc_data[i]);
@@ -77,7 +77,7 @@ public class LrcProcess {
 			}
 			if(LrcList.size() > 0){
 				Mycomparator mycomparator = new Mycomparator();
-				Collections.sort(LrcList, mycomparator);//¶Ô¸è´Ê½øĞĞÅÅĞò£¬°´ÕÕÊ±¼äÏÈºóÅÅĞò
+				Collections.sort(LrcList, mycomparator);//å¯¹æ­Œè¯è¿›è¡Œæ’åºï¼ŒæŒ‰ç…§æ—¶é—´å…ˆåæ’åº
 			}
 			br.close();
 			isr.close();
@@ -85,16 +85,16 @@ public class LrcProcess {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 
-			stringBuilder.append("Ä¾ÓĞ¸è´ÊÎÄ¼ş£¬¸Ï½ôÈ¥ÏÂÔØ£¡...");
+			stringBuilder.append("æœ¨æœ‰æ­Œè¯æ–‡ä»¶ï¼Œèµ¶ç´§å»ä¸‹è½½ï¼...");
 		} catch (IOException e) {
 			e.printStackTrace();
-			stringBuilder.append("Ä¾ÓĞ¶ÁÈ¡µ½¸è´Ê°¡£¡");
+			stringBuilder.append("æœ¨æœ‰è¯»å–åˆ°æ­Œè¯å•Šï¼");
 		}
 		return stringBuilder.toString();
 	}
 
 	/**
-	 * ½âÎö¸èÇúÊ±¼ä´¦ÀíÀà
+	 * è§£ææ­Œæ›²æ—¶é—´å¤„ç†ç±»
 	 */
 	public int TimeStr(String timeStr) {
 
@@ -103,20 +103,20 @@ public class LrcProcess {
 
 		String timeData[] = timeStr.split("@");
 
-		// ·ÖÀë³ö·Ö¡¢Ãë²¢×ª»»ÎªÕûĞÍ
+		// åˆ†ç¦»å‡ºåˆ†ã€ç§’å¹¶è½¬æ¢ä¸ºæ•´å‹
 		int minute = Integer.parseInt(timeData[0]);
 		int second = Integer.parseInt(timeData[1]);
 		int millisecond = Integer.parseInt(timeData[2]);
 
-		// ¼ÆËãÉÏÒ»ĞĞÓëÏÂÒ»ĞĞµÄÊ±¼ä×ª»»ÎªºÁÃëÊı
+		// è®¡ç®—ä¸Šä¸€è¡Œä¸ä¸‹ä¸€è¡Œçš„æ—¶é—´è½¬æ¢ä¸ºæ¯«ç§’æ•°
 		int currentTime = (minute * 60 + second) * 1000 + millisecond * 10;
 
 		return currentTime;
 	}
 
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎª¸è´ÊµÄÊ±¼ä£¬¸ñÊ½¿ÉÒÔÓĞÈıÖÖ00:00.00»òÕß00:00»òÕß00:00:00
-	 * @param str ±»ÅĞ¶ÏµÄ×Ö·û´®
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºæ­Œè¯çš„æ—¶é—´ï¼Œæ ¼å¼å¯ä»¥æœ‰ä¸‰ç§00:00.00æˆ–è€…00:00æˆ–è€…00:00:00
+	 * @param str è¢«åˆ¤æ–­çš„å­—ç¬¦ä¸²
 	 * @return
 	 */
 	private boolean isTime(String str){
@@ -133,7 +133,7 @@ public class LrcProcess {
 	}
 
 	/**
-	 * »ñµÃ¸è´ÊºÍÊ±¼ä²¢·µ»ØµÄÀà
+	 * è·å¾—æ­Œè¯å’Œæ—¶é—´å¹¶è¿”å›çš„ç±»
 	 */
 	public class LrcContent {
 		private String Lrc;

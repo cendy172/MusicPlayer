@@ -42,7 +42,7 @@ public class VolumeView extends View {
 			width = getMeasuredWidth();
 			height = getMeasuredHeight();
 
-			//±³¾°
+			//èƒŒæ™¯
 			Bitmap temp = BitmapFactory.decodeResource(getResources(),
 					R.drawable.progress_background);
 			matrix.reset();
@@ -51,7 +51,7 @@ public class VolumeView extends View {
 			backbar = Bitmap.createBitmap(temp, 0, 0, temp.getWidth(),
 					temp.getHeight(), matrix, true);
 
-			//»¬¶¯¿é
+			//æ»‘åŠ¨å—
 			temp = BitmapFactory.decodeResource(getResources(),
 					R.drawable.volume_thumb);
 			matrix.reset();
@@ -60,7 +60,7 @@ public class VolumeView extends View {
 			thumb = Bitmap.createBitmap(temp, 0, 0, temp.getWidth(),
 					temp.getHeight(), matrix, true);
 			
-			//ÒÑ»¬¶¯²¿·Ö
+			//å·²æ»‘åŠ¨éƒ¨åˆ†
 			frontbar = BitmapFactory.decodeResource(getResources(),
 					R.drawable.progress_pro);
 		}
@@ -104,7 +104,7 @@ public class VolumeView extends View {
 		}
 		if (srcY != 0 && dstY != 0) {
 			if (srcY - dstY > 0) {
-				// ÏòÉÏ»¬¶¯
+				// å‘ä¸Šæ»‘åŠ¨
 				float f = srcY - dstY;
 				float add = f / height * 15;
 				MainActivity.audioManager
@@ -115,7 +115,7 @@ public class VolumeView extends View {
 								AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 				this.invalidate();
 			} else {
-				// ÏòÏÂ»¬¶¯
+				// å‘ä¸‹æ»‘åŠ¨
 				float f = dstY - srcY;
 				float add = f / height * 15;
 				MainActivity.audioManager

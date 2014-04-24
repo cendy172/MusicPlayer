@@ -3,18 +3,18 @@ package com.liqing.bean;
 public class Music {
 
 	/**
-	 * ËùÓĞ³ÌĞòÏÂÔØµÄÄÚÈİ·ÅÔÚÂ·¾¶Îª£º
-	 * ×¨¼­·âÃæ:/mnt/sdcard/musicplayer/album/×¨¼­Ãû.png
-	 * ¸èÊÖÍ·Ïñ£º/mnt/sdcard/musicplayer/singer/¸èÊÖÃû.png
-	 * ÒôÀÖ£º/mnt/sdcard/musicplayer/music/¸èÊÖÃû-¸èÃû.mp3
+	 * æ‰€æœ‰ç¨‹åºä¸‹è½½çš„å†…å®¹æ”¾åœ¨è·¯å¾„ä¸ºï¼š
+	 * ä¸“è¾‘å°é¢:/mnt/sdcard/musicplayer/album/ä¸“è¾‘å.png
+	 * æ­Œæ‰‹å¤´åƒï¼š/mnt/sdcard/musicplayer/singer/æ­Œæ‰‹å.png
+	 * éŸ³ä¹ï¼š/mnt/sdcard/musicplayer/music/æ­Œæ‰‹å-æ­Œå.mp3
 	 */
 	
-	public final static String KEY_ID = "_id";// ÓÃ×÷Ö÷¼ü£¬ÒòÎªSimpleCursorAdapterÖ»Ê¶±ğ_idµÄÖ÷¼ü
-	public final static String TITLE_KEY = "title_key";// ¸èÃû
-	public final static String DURATION = "duration";// Ê±³¤
-	public final static String BOOKMARK = "bookmark";// ×îºó²¥·ÅÊ±¼ä ms
-	public final static String ARTIST = "artist";// ¸èÊÖ
-	public final static String COMPOSER = "composer";// ×÷Çú¼Ò
+	public final static String KEY_ID = "_id";// ç”¨ä½œä¸»é”®ï¼Œå› ä¸ºSimpleCursorAdapteråªè¯†åˆ«_idçš„ä¸»é”®
+	public final static String TITLE_KEY = "title_key";// æ­Œå
+	public final static String DURATION = "duration";// æ—¶é•¿
+	public final static String BOOKMARK = "bookmark";// æœ€åæ’­æ”¾æ—¶é—´ ms
+	public final static String ARTIST = "artist";// æ­Œæ‰‹
+	public final static String COMPOSER = "composer";// ä½œæ›²å®¶
 	
 	/**
 	 * The album the audio file is from, if any
@@ -22,7 +22,7 @@ public class Music {
 	 * Type: TEXT
 	 * </P>
 	 */
-	public final static String ALBUM = "album";// ×¨¼­
+	public final static String ALBUM = "album";// ä¸“è¾‘
 
 	/**
 	 * A URI to the album art, if any
@@ -30,9 +30,9 @@ public class Music {
 	 * Type: TEXT
 	 * </P>
 	 */
-	public final static String ALBUM_ART = "album_art";//ÓÃÓÚ±£´æ×¨¼­·âÃæÍ¼Æ¬µÄÃû³Æ
+	public final static String ALBUM_ART = "album_art";//ç”¨äºä¿å­˜ä¸“è¾‘å°é¢å›¾ç‰‡çš„åç§°
 
-	public final static String PATH = "path";// Â·¾¶
+	public final static String PATH = "path";// è·¯å¾„
 
 	private int id = 0;
 	private String musicName = null;
@@ -120,7 +120,7 @@ public class Music {
 		this.artist = artist;
 		this.composer = composer;
 		this.album = album;
-		this.albumart = albumart;//×¨¼­Ãû
+		this.albumart = albumart;//ä¸“è¾‘å
 		this.path = path;
 	}
 
@@ -149,7 +149,7 @@ public class Music {
 	
 
 	/**
-	 * Ê±¼ä¸ñÊ½×ª»»
+	 * æ—¶é—´æ ¼å¼è½¬æ¢
 	 * @param time
 	 * @return
 	 */

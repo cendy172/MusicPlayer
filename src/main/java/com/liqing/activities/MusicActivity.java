@@ -75,8 +75,8 @@ public class MusicActivity extends Activity implements OnClickListener,OnTouchLi
 		SharedPreferences sharedPreferences = PreferenceManager
 				.getDefaultSharedPreferences(getApplicationContext());
 
-		musicName.setText(sharedPreferences.getString("musicname", "¸èÇúÃû"));
-		singer.setText(sharedPreferences.getString("singer", "¸èÊÖ"));
+		musicName.setText(sharedPreferences.getString("musicname", "æ­Œæ›²å"));
+		singer.setText(sharedPreferences.getString("singer", "æ­Œæ‰‹"));
 		endTime.setText(Music.toTime(Integer.valueOf(sharedPreferences
 				.getString("duration", "0"))));
 		musicView.refreshBitmap(sharedPreferences.getString(PreferenceKeys.ALBUMART, null));
@@ -120,7 +120,7 @@ public class MusicActivity extends Activity implements OnClickListener,OnTouchLi
 		super.onPause();
 	}
 
-	// ÓÃÓÚ´ÓLocalActivityManagerµ÷ÓÃ
+	// ç”¨äºä»LocalActivityManagerè°ƒç”¨
 	@Override
 	public void onContentChanged() {
 		super.onContentChanged();

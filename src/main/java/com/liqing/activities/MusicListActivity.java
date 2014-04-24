@@ -45,14 +45,14 @@ import com.liqing.util.FileUtil;
 import com.liqing.util.NetUtil;
 
 public class MusicListActivity extends Activity implements
-	android.view.View.OnClickListener {
+	View.OnClickListener {
 
-	private ExpandableListView customlists = null;// ¶ş¼¶ÁĞ±í
-	private ImageView addlist = null, imgsearch = null, groupInd = null;// Ìí¼ÓmusiclistµÄµã»÷
+	private ExpandableListView customlists = null;// äºŒçº§åˆ—è¡¨
+	private ImageView addlist = null, imgsearch = null, groupInd = null;// æ·»åŠ musiclistçš„ç‚¹å‡»
 	private boolean isResultShow = false;
 
-	private ArrayList<String> customlists_group_list = null;// ÓÃ»§×Ô¶¨Òå²¥·ÅÁĞ±íÒ»¼¶ÏÔÊ¾Êı¾İ
-	private ArrayList<List<String>> customlists_child_list = null;// ÓÃ»§×Ô¶¨Òå²¥·ÅÁĞ±í¶ş¼¶ÏÔÊ¾Êı¾İ
+	private ArrayList<String> customlists_group_list = null;// ç”¨æˆ·è‡ªå®šä¹‰æ’­æ”¾åˆ—è¡¨ä¸€çº§æ˜¾ç¤ºæ•°æ®
+	private ArrayList<List<String>> customlists_child_list = null;// ç”¨æˆ·è‡ªå®šä¹‰æ’­æ”¾åˆ—è¡¨äºŒçº§æ˜¾ç¤ºæ•°æ®
 	private ArrayList<String> result_name = null, result_list = null;
 	private ArrayList<Integer> result_position = null;
 
@@ -106,7 +106,7 @@ public class MusicListActivity extends Activity implements
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 				String listname = customlists_group_list.get(groupPosition);
-				if (listname.equals("Ä¬ÈÏÁĞ±í")) {
+				if (listname.equals("é»˜è®¤åˆ—è¡¨")) {
 					listname = MusicList.DEFAULT_TABLE_NAME;
 				}
 				Intent intent = new Intent(MainActivity.SELECTED_ACTION);
@@ -127,7 +127,7 @@ public class MusicListActivity extends Activity implements
 	}
 
 	/**
-	 * ³õÊ¼»¯×é¡¢×ÓÁĞ±íÊı¾İ
+	 * åˆå§‹åŒ–ç»„ã€å­åˆ—è¡¨æ•°æ®
 	 */
 	private void initializeData() {
 		musicList.refreshCustomListNameList();
@@ -146,9 +146,9 @@ public class MusicListActivity extends Activity implements
 			this.customlists_child_list.clear();
 		}
 
-		this.customlists_group_list.add("Ä¬ÈÏÁĞ±í");
+		this.customlists_group_list.add("é»˜è®¤åˆ—è¡¨");
 		int size = 0;
-		// Ìí¼Ócustomlists_group_listµÄÒ»¼¶ÁĞ±í
+		// æ·»åŠ customlists_group_listçš„ä¸€çº§åˆ—è¡¨
 		if (MusicList.customListNameList != null) {
 			size = MusicList.customListNameList.getCount();
 			if (size > 0) {
@@ -163,7 +163,7 @@ public class MusicListActivity extends Activity implements
 			}
 		}
 
-		// Ìí¼Ócustomlists_group_listµÄ¶ş¼¶ÁĞ±í
+		// æ·»åŠ customlists_group_listçš„äºŒçº§åˆ—è¡¨
 		if (MusicList.customListData != null) {
 			int lenght = MusicList.customListData.size();
 			for (int i = 0; i < lenght; i++) {
@@ -186,7 +186,7 @@ public class MusicListActivity extends Activity implements
 		}
 	}
 
-	// ActivityÓÉ È«²¿¿É¼û¿É²Ù×÷ ±äÎª ²¿·Ö¿É¼ûµ«²»¿ÉÒÔ²Ù×÷ Ê±Ö´ĞĞ
+	// Activityç”± å…¨éƒ¨å¯è§å¯æ“ä½œ å˜ä¸º éƒ¨åˆ†å¯è§ä½†ä¸å¯ä»¥æ“ä½œ æ—¶æ‰§è¡Œ
 	@Override
 	public void onStart() {
 		if (musicList == null) {
@@ -209,23 +209,23 @@ public class MusicListActivity extends Activity implements
 		super.onStart();
 	}
 
-	// ActivityÓÉ ²¿·Ö¿É¼ûµ«²»¿ÉÒÔ²Ù×÷ ±äÎª È«²¿¿É¼û¿É²Ù×÷ Ê±Ö´ĞĞ
+	// Activityç”± éƒ¨åˆ†å¯è§ä½†ä¸å¯ä»¥æ“ä½œ å˜ä¸º å…¨éƒ¨å¯è§å¯æ“ä½œ æ—¶æ‰§è¡Œ
 	@Override
 	public void onStop() {
 		super.onStop();
 	}
 
-	// ÓÃÓÚ´ÓLocalActivityManagerµ÷ÓÃ
+	// ç”¨äºä»LocalActivityManagerè°ƒç”¨
 	@Override
 	public void onContentChanged() {
 		super.onContentChanged();
 		onResume();
 	}
 
-	// ActivityÓÉ ÍêÈ«²»¿É¼û²»¿ÉÒÔ²Ù×÷ ±äÎª È«²¿¿É¼û¿É²Ù×÷»òÕß²¿·Ö¿É¼û²»¿É²Ù×÷ Ê±Ö´ĞĞ
+	// Activityç”± å®Œå…¨ä¸å¯è§ä¸å¯ä»¥æ“ä½œ å˜ä¸º å…¨éƒ¨å¯è§å¯æ“ä½œæˆ–è€…éƒ¨åˆ†å¯è§ä¸å¯æ“ä½œ æ—¶æ‰§è¡Œ
 	@Override
 	public void onResume() {
-		// activity¿É¼ûÊ±Ö´ĞĞµÄ²Ù×÷Ğ´ÔÚÏÂÃæ
+		// activityå¯è§æ—¶æ‰§è¡Œçš„æ“ä½œå†™åœ¨ä¸‹é¢
 		if (musicList == null) {
 			musicList = new MusicList(getApplicationContext());
 		}
@@ -244,18 +244,18 @@ public class MusicListActivity extends Activity implements
 		super.onResume();
 	}
 
-	// ActivityÓÉ È«²¿¿É¼û¿É²Ù×÷»òÕß²¿·Ö¿É¼û²»¿É²Ù×÷ ±äÎª ÍêÈ«²»¿É¼û²»¿ÉÒÔ²Ù×÷ Ê±Ö´ĞĞ
+	// Activityç”± å…¨éƒ¨å¯è§å¯æ“ä½œæˆ–è€…éƒ¨åˆ†å¯è§ä¸å¯æ“ä½œ å˜ä¸º å®Œå…¨ä¸å¯è§ä¸å¯ä»¥æ“ä½œ æ—¶æ‰§è¡Œ
 	@Override
 	public void onPause() {
 		super.onPause();
 	}
 
-	// ÉèÖÃÉÏÏÂÎÄ²Ëµ¥
+	// è®¾ç½®ä¸Šä¸‹æ–‡èœå•
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View view,
 			ContextMenuInfo menuInfo) {
 		// super.onCreateContextMenu(menu, view, menuInfo);
-		ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
+		ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) menuInfo;
 		int type = ExpandableListView
 				.getPackedPositionType(info.packedPosition);
 		int group = ExpandableListView.getPackedPositionGroup(info.packedPosition);//
@@ -274,7 +274,7 @@ public class MusicListActivity extends Activity implements
 		super.onCreateContextMenu(menu, view, menuInfo);
 	}
 
-	// ContextMenuÉÏÏÂÎÄÑ¡Ôñ´¦Àí
+	// ContextMenuä¸Šä¸‹æ–‡é€‰æ‹©å¤„ç†
 	@Override
 	public boolean onContextItemSelected(MenuItem menuItem) {
 		ExpandableListContextMenuInfo exinfo = ((ExpandableListContextMenuInfo) menuItem
@@ -307,8 +307,8 @@ public class MusicListActivity extends Activity implements
 				final String oldName = customlists_group_list.get(position);
 				((EditText) view.findViewById(R.id.listnameedittext))
 						.setHint(oldName);
-				new AlertDialog.Builder(this).setView(view).setTitle("¸ü¸ÄÁĞ±íÃû")
-						.setPositiveButton("È·¶¨", new AlertDialog.OnClickListener() {
+				new AlertDialog.Builder(this).setView(view).setTitle("æ›´æ”¹åˆ—è¡¨å")
+						.setPositiveButton("ç¡®å®š", new AlertDialog.OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog,
@@ -325,7 +325,7 @@ public class MusicListActivity extends Activity implements
 
 								initializeData();
 							}
-						}).setNegativeButton("È¡Ïû", new AlertDialog.OnClickListener() {
+						}).setNegativeButton("å–æ¶ˆ", new AlertDialog.OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog,
@@ -345,14 +345,14 @@ public class MusicListActivity extends Activity implements
 			int childPos = ExpandableListView
 					.getPackedPositionChild(exinfo.packedPosition);
 			switch (menuItem.getItemId()) {
-			case 1:// ²¥·Å
+			case 1:// æ’­æ”¾
 				Intent intent = new Intent(MainActivity.SELECTED_ACTION);
 				intent.putExtra(MusicService.LIST_NAME,
 						customlists_group_list.get(groupPos));
 				intent.putExtra(MusicService.ID, childPos);
 				sendBroadcast(intent);
 				break;
-			case 2:// É¾³ı
+			case 2:// åˆ é™¤
 				Cursor cursor = MusicList.customListData.get(groupPos);
 				cursor.moveToPosition(childPos);
 				Music music = new Music(cursor.getInt(cursor
@@ -371,12 +371,12 @@ public class MusicListActivity extends Activity implements
 		return super.onContextItemSelected(menuItem);
 	}
 
-	// Ìí¼Ómusiclistname
+	// æ·»åŠ musiclistname
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.addlist:
-			// Ìí¼ÓÒôÀÖÁĞ±í
+			// æ·»åŠ éŸ³ä¹åˆ—è¡¨
 			addList();
 			break;
 		case R.id.img_search:
@@ -384,7 +384,7 @@ public class MusicListActivity extends Activity implements
 				isResultShow = true;
 				imgsearch.setImageResource(R.drawable.close);
 				if (searchEditText.getText().toString().trim().length() > 0) {
-					// ËÑË÷
+					// æœç´¢
 					String str = searchEditText.getText().toString();
 					final String[] datas = str.split(" ");
 					if (datas.length == 2) {
@@ -404,7 +404,7 @@ public class MusicListActivity extends Activity implements
 											AdapterView<?> parent, View view,
 											int position, long id) {
 										if (position == result_name.size() - 1) {
-											// ÏÂÔØ
+											// ä¸‹è½½
 											final NetUtil netUtil = new NetUtil(
 													getApplicationContext());
 											netUtil.setListName(MusicList.DEFAULT_TABLE_NAME);
@@ -427,7 +427,7 @@ public class MusicListActivity extends Activity implements
 													});
 											thread.start();
 										} else {
-											// ²¥·Å
+											// æ’­æ”¾
 											Intent intent = new Intent(
 													MainActivity.SELECTED_ACTION);
 											intent.putExtra(
@@ -446,7 +446,7 @@ public class MusicListActivity extends Activity implements
 									}
 								});
 					} else {
-						Toast.makeText(this, "ÇëÊäÈë¸èÇúÃû ¸èÊÖµÄ¸ñÊ½", Toast.LENGTH_SHORT)
+						Toast.makeText(this, "è¯·è¾“å…¥æ­Œæ›²å æ­Œæ‰‹çš„æ ¼å¼", Toast.LENGTH_SHORT)
 								.show();
 					}
 				}
@@ -502,7 +502,7 @@ public class MusicListActivity extends Activity implements
 	}
 
 	private void search(String musicname, String singer) {
-		// ËÑË÷
+		// æœç´¢
 		// ArrayList<String >
 		if (result_list == null) {
 			result_list = new ArrayList<String>();
@@ -517,7 +517,7 @@ public class MusicListActivity extends Activity implements
 		result_name.clear();
 		result_list.clear();
 
-		// ËÑË÷×ÓÁĞ±í
+		// æœç´¢å­åˆ—è¡¨
 		int size = 0;
 		if (MusicList.customListData != null) {
 			int lenght = MusicList.customListData.size();
@@ -543,9 +543,9 @@ public class MusicListActivity extends Activity implements
 			}
 		}
 		result_position.add(0);
-		result_name.add("µã»÷ÏÂÔØ¸ÃÒôÀÖ");
+		result_name.add("ç‚¹å‡»ä¸‹è½½è¯¥éŸ³ä¹");
 		result_list.add("");
-		// ÏÔÊ¾ËÑË÷½á¹ûµÄÁĞ±í
+		// æ˜¾ç¤ºæœç´¢ç»“æœçš„åˆ—è¡¨
 	}
 
 	@Override

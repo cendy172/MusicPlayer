@@ -1,5 +1,6 @@
 package com.liqing.views;
 
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,15 +9,15 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
+
 import com.liqing.activities.MusicActivity;
 import com.liqing.bean.Music;
 import com.liqing.util.LrcProcess.LrcContent;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
- * �Զ���滭��ʣ��������Ч��
+ * 自定义绘画歌词，产生滚动效果
  */
 public class LrcView extends TextView {
 
@@ -28,7 +29,7 @@ public class LrcView extends TextView {
 	private Paint timePaint;
 	public static float TextHigh = 50;
 	private float TextSize = 28;
-	private int Index = 0;// ��ǰ���index
+	private int Index = 0;// 当前句的index
 	private int x, y;
 	
 
@@ -75,12 +76,12 @@ public class LrcView extends TextView {
 	private void init() {
 		setFocusable(true);
 
-		// ��������
+		// 高亮部分
 		CurrentPaint = new Paint();
 		CurrentPaint.setAntiAlias(true);
 		CurrentPaint.setTextAlign(Paint.Align.CENTER);
 
-		// �Ǹ�������
+		// 非高亮部分
 		NotCurrentPaint = new Paint();
 		NotCurrentPaint.setAntiAlias(true);
 		NotCurrentPaint.setTextAlign(Paint.Align.CENTER);
@@ -130,9 +131,9 @@ public class LrcView extends TextView {
 						width / 2, high / 2 + TextHigh - frame, CurrentPaint);
 				float tempY = high / 2 + TextHigh - frame;
 
-				// ��������֮ǰ�ľ���
+				// 画出本句之前的句子
 				for (int i = Index - 1; i >= 0; i--) {
-					// ��������
+					// 向上推移
 					tempY = tempY - TextHigh;
 
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
@@ -141,9 +142,9 @@ public class LrcView extends TextView {
 
 				tempY = high / 2 + TextHigh - frame;
 
-				// ��������֮��ľ���
+				// 画出本句之后的句子
 				for (int i = Index + 1; i < mSentenceEntities.size(); i++) {
-					// ��������
+					// 往下推移
 					tempY = tempY + TextHigh;
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
 							width / 2, tempY, NotCurrentPaint);
@@ -155,9 +156,9 @@ public class LrcView extends TextView {
 						width / 2, high / 2 + TextHigh +y%50, CurrentPaint);
 				float tempY = high / 2 + TextHigh +y%50;
 
-				// ��������֮ǰ�ľ���
+				// 画出本句之前的句子
 				for (int i = Index - 1; i >= 0; i--) {
-					// ��������
+					// 向上推移
 					tempY = tempY - TextHigh;
 
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
@@ -166,9 +167,9 @@ public class LrcView extends TextView {
 
 				tempY = high / 2 + TextHigh+y%50 ;
 
-				// ��������֮��ľ���
+				// 画出本句之后的句子
 				for (int i = Index + 1; i < mSentenceEntities.size(); i++) {
-					// ��������
+					// 往下推移
 					tempY = tempY + TextHigh;
 					canvas.drawText(mSentenceEntities.get(i).getLrc(),
 							width / 2, tempY, NotCurrentPaint);

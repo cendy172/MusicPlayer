@@ -33,31 +33,31 @@ import com.liqing.bean.MusicList;
 /**
  * @author liqing
  * 
- *         ÓÃÓÚÏÂÔØÍøÂçÉÏµÄ¸èÇú£¬¸è´Ê£¬×¨¼­ÁĞ±í£¬Í·Ïñ
+ *         ç”¨äºä¸‹è½½ç½‘ç»œä¸Šçš„æ­Œæ›²ï¼Œæ­Œè¯ï¼Œä¸“è¾‘åˆ—è¡¨ï¼Œå¤´åƒ
  * 
- *         ×¨¼­·âÃæÔÚsosoÏÂÔØ£¬¸èÇúºÍ¸è´Ê»¹ÓĞÍ·ÏñÍ¨¹ıbaiduÏÂÔØ
+ *         ä¸“è¾‘å°é¢åœ¨sosoä¸‹è½½ï¼Œæ­Œæ›²å’Œæ­Œè¯è¿˜æœ‰å¤´åƒé€šè¿‡baiduä¸‹è½½
  */
 
 public class NetUtil {
 
-	private String musicName;// ¸èÇúÃû
-	private String singer;// ¸èÊÖ
-	private String musicEncode;// GBK×ªÂëºóµÄmusicNameÖµµÄ×Ö·û´®£¬ÒòÎªÒªURLÖĞÏÔÊ¾
-	private String singerEncode;// GBK×ªÂëºóµÄsingerÖµµÄ×Ö·û´®£¬ÒòÎªÒªURLÖĞÏÔÊ¾
-	private String musicPath;// ¸èÇúÂ·¾¶£¬¾ø¶ÔÂ·¾¶£¬°üÀ¨ÎÄ¼şÃû
+	private String musicName;// æ­Œæ›²å
+	private String singer;// æ­Œæ‰‹
+	private String musicEncode;// GBKè½¬ç åçš„musicNameå€¼çš„å­—ç¬¦ä¸²ï¼Œå› ä¸ºè¦URLä¸­æ˜¾ç¤º
+	private String singerEncode;// GBKè½¬ç åçš„singerå€¼çš„å­—ç¬¦ä¸²ï¼Œå› ä¸ºè¦URLä¸­æ˜¾ç¤º
+	private String musicPath;// æ­Œæ›²è·¯å¾„ï¼Œç»å¯¹è·¯å¾„ï¼ŒåŒ…æ‹¬æ–‡ä»¶å
 
-	private String listName;// µ±Ç°ÏÂÔØµÄ×¨¼­·âÃæµÄ¸èÇúËùÔÚ²¥·ÅÁĞ±í
-	private Context context = null;// ÓÃÓÚ²Ù×÷MusicList¶ÔÏó
+	private String listName;// å½“å‰ä¸‹è½½çš„ä¸“è¾‘å°é¢çš„æ­Œæ›²æ‰€åœ¨æ’­æ”¾åˆ—è¡¨
+	private Context context = null;// ç”¨äºæ“ä½œMusicListå¯¹è±¡
 
 	/**
-	 * ÉèÖÃmusicName
+	 * è®¾ç½®musicName
 	 * 
 	 * @param musicName
-	 *            ¸èÇúÃû
+	 *            æ­Œæ›²å
 	 * @param singer
-	 *            ¸èÊÖÃû
+	 *            æ­Œæ‰‹å
 	 * @param musicPath
-	 *            ¸èÇúµÄ¾ø¶ÔÂ·¾¶
+	 *            æ­Œæ›²çš„ç»å¯¹è·¯å¾„
 	 */
 	public void setMessage(String musicName, String singer, String musicPath) {
 		this.musicName = musicName;
@@ -66,17 +66,17 @@ public class NetUtil {
 	}
 
 	/**
-	 * ÓÃÓÚ½«×¨¼­·âÃæÃû³Æ¼ÓÈëÊı¾İ¿â
+	 * ç”¨äºå°†ä¸“è¾‘å°é¢åç§°åŠ å…¥æ•°æ®åº“
 	 * 
 	 * @param listName
-	 *            µ±Ç°ÏÂÔØµÄ×¨¼­·âÃæµÄ¸èÇúËùÔÚ²¥·ÅÁĞ±í
+	 *            å½“å‰ä¸‹è½½çš„ä¸“è¾‘å°é¢çš„æ­Œæ›²æ‰€åœ¨æ’­æ”¾åˆ—è¡¨
 	 */
 	public void setListName(String listName) {
 		this.listName = listName;
 	}
 
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 */
 	public NetUtil(Context context) {
 		super();
@@ -87,11 +87,11 @@ public class NetUtil {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÁªÍø
+	 * åˆ¤æ–­æ˜¯å¦è”ç½‘
 	 * 
 	 * @param Context
-	 *            ÉÏÏÂÎÄ
-	 * @return Boolean ÊÇ·ñÁªÍø
+	 *            ä¸Šä¸‹æ–‡
+	 * @return Boolean æ˜¯å¦è”ç½‘
 	 */
 	public static boolean isNetConnection(Context context) {
 		ConnectivityManager connectivityManager = (ConnectivityManager) context
@@ -99,7 +99,7 @@ public class NetUtil {
 		NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 		if (networkInfo != null && networkInfo.isAvailable()) {
 			if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-				// ÒòÎªÒªÊ¹ÓÃJsoup½âÎö»ñµÃµÄHtmlÎÄ¼ş£¬ÔÚ²»ÊÇwifiµÄÇé¿öÏÂÒªÉèÖÃ´úÀí£¬ÉèÖÃ´úÀíµÄ¹ı³Ì±ØĞë·ÅÔÚJsoup.connect·½·¨Ê¹ÓÃÖ®Ç°
+				// å› ä¸ºè¦ä½¿ç”¨Jsoupè§£æè·å¾—çš„Htmlæ–‡ä»¶ï¼Œåœ¨ä¸æ˜¯wifiçš„æƒ…å†µä¸‹è¦è®¾ç½®ä»£ç†ï¼Œè®¾ç½®ä»£ç†çš„è¿‡ç¨‹å¿…é¡»æ”¾åœ¨Jsoup.connectæ–¹æ³•ä½¿ç”¨ä¹‹å‰
 				String host = Proxy.getDefaultHost();
 				int port = Proxy.getDefaultPort();
 				if (host != null && port != -1) {
@@ -114,9 +114,9 @@ public class NetUtil {
 	}
 
 	/**
-	 * »ñµÃ×¨¼­·âÃæ
+	 * è·å¾—ä¸“è¾‘å°é¢
 	 * 
-	 * @return Bitmap ×¨¼­·âÃæµÄBitmap
+	 * @return Bitmap ä¸“è¾‘å°é¢çš„Bitmap
 	 */
 	public Bitmap getAlbumArt() {
 		Bitmap bitmap = null;
@@ -132,11 +132,11 @@ public class NetUtil {
 	}
 
 	/**
-	 * ÏÂÔØ×¨¼­·âÃæ Í¨¹ıÒ»Ìı»ñµÃ¸èÇú»ñµÃinit_srcÊôĞÔµÄÖµ£¬½«90¸ÄÎª150¼´ÎªËùĞèÍ¼Æ¬µÄµØÖ·£¬Ä¬ÈÏÏÂÔØµÚÒ»¸ö
-	 * µØÖ·£ºhttp://so.1ting.com/all.do?q=ÏëĞÒ¸£µÄÈË+ÑîØ©ÁÕ
+	 * ä¸‹è½½ä¸“è¾‘å°é¢ é€šè¿‡ä¸€å¬è·å¾—æ­Œæ›²è·å¾—init_srcå±æ€§çš„å€¼ï¼Œå°†90æ”¹ä¸º150å³ä¸ºæ‰€éœ€å›¾ç‰‡çš„åœ°å€ï¼Œé»˜è®¤ä¸‹è½½ç¬¬ä¸€ä¸ª
+	 * åœ°å€ï¼šhttp://so.1ting.com/all.do?q=æƒ³å¹¸ç¦çš„äºº+æ¨ä¸ç³
 	 */
 	public void downloadAlbumArt() {
-		// ÏÂÔØ²¢±£´æ,½«×¨¼­Ãû´æÈë¶ÔÓ¦¸èÇúµÄÊı¾İ¿âÖĞ
+		// ä¸‹è½½å¹¶ä¿å­˜,å°†ä¸“è¾‘åå­˜å…¥å¯¹åº”æ­Œæ›²çš„æ•°æ®åº“ä¸­
 		try {
 			this.musicEncode = URLEncoder.encode(this.musicName, "UTF-8");
 			this.singerEncode = URLEncoder.encode(singer, "UTF-8");
@@ -156,7 +156,7 @@ public class NetUtil {
 
 			if (elements != null && elements.size() > 0) {
 				Element element = elements.first();
-				title = element.text();// »ñµÃµÄ×¨¼­Ãû
+				title = element.text();// è·å¾—çš„ä¸“è¾‘å
 				tempsrc = element.attr("href");
 				if (title.length() != 0) {
 					MusicList musicList = new MusicList(context);
@@ -185,9 +185,9 @@ public class NetUtil {
 	}
 
 	/**
-	 * »ñµÃ¸èÊÖµÄÍ·Ïñ
+	 * è·å¾—æ­Œæ‰‹çš„å¤´åƒ
 	 * 
-	 * @return Bitmap ¸èÊÖÍ·ÏñµÄBitmap
+	 * @return Bitmap æ­Œæ‰‹å¤´åƒçš„Bitmap
 	 */
 	public Bitmap getSingerBitmap() {
 		Bitmap bitmap = null;
@@ -200,26 +200,26 @@ public class NetUtil {
 	}
 
 	/**
-	 * ÏÂÔØ¸èÊÖÍ·Ïñ Í¨¹ı°Ù¶È»ñµÃ°Ù¶È°Ù¿ÆµÄµØÖ·£¬´Ó°Ù¶È°Ù¿ÆÖĞ»ñµÃ¸èÊÖÍ·ÏñµÄµØÖ·
-	 * http://www.baidu.com/s?wd=ÍõĞÄÁè&rsv_spt
+	 * ä¸‹è½½æ­Œæ‰‹å¤´åƒ é€šè¿‡ç™¾åº¦è·å¾—ç™¾åº¦ç™¾ç§‘çš„åœ°å€ï¼Œä»ç™¾åº¦ç™¾ç§‘ä¸­è·å¾—æ­Œæ‰‹å¤´åƒçš„åœ°å€
+	 * http://www.baidu.com/s?wd=ç‹å¿ƒå‡Œ&rsv_spt
 	 * =1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&inputT=1422
-	 * È»ºó»ñµÃ°Ù¶È°Ù¿ÆµÄµØÖ·£¬ÔÙ»ñµÃ¸èÊÖÍ·Ïñ
+	 * ç„¶åè·å¾—ç™¾åº¦ç™¾ç§‘çš„åœ°å€ï¼Œå†è·å¾—æ­Œæ‰‹å¤´åƒ
 	 */
 	private void downloadSingerBitmap() {
-		// ÏÂÔØ¸èÊÖÍ·Ïñ²¢±£´æ
+		// ä¸‹è½½æ­Œæ‰‹å¤´åƒå¹¶ä¿å­˜
 //		String SingerURL = "http://www.baidu.com/s?wd="
 //				+ this.singerEncode
 //				+ "&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&inputT=1422";
 	}
 
 	/**
-	 * ÏÂÔØ¸è´Ê
+	 * ä¸‹è½½æ­Œè¯
 	 * http://mp3.baidu.com/m?word=musicname+singer&lm=-1&f=ms&tn=baidump3&ct
-	 * =134217728&lf=&rn= »ñÈ¡µÚÒ»¸öÁ´½Ó£¡ÔÙ´Î·ÃÎÊ¼´Îª¸è´ÊµÄµØÖ· ¸è´ÊºÍ¸èÇú·ÅÔÚÍ¬Â·¾¶ÏÂ£¬Ãû×ÖÒ²Ò»Ñù£¬Ö»ÊÇ¸ü¸Äºó×ºÎª.lrc
+	 * =134217728&lf=&rn= è·å–ç¬¬ä¸€ä¸ªé“¾æ¥ï¼å†æ¬¡è®¿é—®å³ä¸ºæ­Œè¯çš„åœ°å€ æ­Œè¯å’Œæ­Œæ›²æ”¾åœ¨åŒè·¯å¾„ä¸‹ï¼Œåå­—ä¹Ÿä¸€æ ·ï¼Œåªæ˜¯æ›´æ”¹åç¼€ä¸º.lrc
 	 */
 	public void downloadLrc() {
 		if(FileUtil._isFileExist2(musicPath.replace(".mp3", ".lrc"))){
-			return;//Ã»Æğ×÷ÓÃ
+			return;//æ²¡èµ·ä½œç”¨
 		}
 		try {
 			this.musicEncode = URLEncoder.encode(this.musicName, "GBK");
@@ -228,7 +228,7 @@ public class NetUtil {
 			e1.printStackTrace();
 		}
 
-		// ÏÂÔØ¸è´Ê²¢±£´æ
+		// ä¸‹è½½æ­Œè¯å¹¶ä¿å­˜
 		// String LrcURL = "http://mp3.baidu.com/m?word="
 		// + this.musicEncode + "+" + this.singerEncode +
 		// "&lm=-1&f=ms&tn=baidump3&ct=134217728&lf=&rn=";
@@ -242,7 +242,7 @@ public class NetUtil {
 			String link1 = null;
 			Document document = Jsoup.connect(LrcURL).timeout(60000).get();
 
-			Elements allurls = document.select("div[class=frame] a[href]");// ¸èÇúÏÂÔØÁ´½Ó
+			Elements allurls = document.select("div[class=frame] a[href]");// æ­Œæ›²ä¸‹è½½é“¾æ¥
 			if (allurls != null && allurls.size() > 0) {
 				Element element = allurls.first();
 				link1 = element.attr("href");
@@ -254,7 +254,7 @@ public class NetUtil {
 					Elements elements = document1.select("a[href]");
 					if (elements != null && elements.size() > 0) {
 						for(Element e:elements){
-							if(e.text().contains("ÏÂÔØLRC¸è´Ê")){
+							if(e.text().contains("ä¸‹è½½LRCæ­Œè¯")){
 								lrcURL = e.attr("href");
 								break;
 							}
@@ -268,7 +268,7 @@ public class NetUtil {
 
 		if (lrcURL != null && lrcURL.length() > 0) {
 			String savePath = this.musicPath.replace(".mp3", ".lrc");
-			// ÏÂÔØ¸è´Ê²¢±£´æ
+			// ä¸‹è½½æ­Œè¯å¹¶ä¿å­˜
 				try {
 					this.save(savePath, getInputStreamFromUrl(lrcURL));
 				} catch (IOException e) {
@@ -278,9 +278,9 @@ public class NetUtil {
 	}
 
 	/**
-	 * ÏÂÔØ¸èÇú£¬»¹Òª¼ÓÈëÊı¾İ¿â
-	 * http://mp3.baidu.com/d?song=²Êºç&singer=ÎåÔÂÌì&album=&appendix=&size
-	 * =4718592&cat=0&attr=0 »ñÈ¡ÏÂÔØµØÖ·£¬È»ºóÔÙÏÂÔØ ¸èÇú¸ñÊ½Îª ¸èÊÖÃû-ÎÄ¼şÃû.mp3
+	 * ä¸‹è½½æ­Œæ›²ï¼Œè¿˜è¦åŠ å…¥æ•°æ®åº“
+	 * http://mp3.baidu.com/d?song=å½©è™¹&singer=äº”æœˆå¤©&album=&appendix=&size
+	 * =4718592&cat=0&attr=0 è·å–ä¸‹è½½åœ°å€ï¼Œç„¶åå†ä¸‹è½½ æ­Œæ›²æ ¼å¼ä¸º æ­Œæ‰‹å-æ–‡ä»¶å.mp3
 	 */
 	public void downloadMusic() {
 		try {
@@ -289,7 +289,7 @@ public class NetUtil {
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
-		// ÏÂÔØ¸èÇú²¢±£´æ
+		// ä¸‹è½½æ­Œæ›²å¹¶ä¿å­˜
 		String MusicURL = "http://box.zhangmen.baidu.com/x?op=12&count=1&title="
 				+ this.musicEncode + "$$" + this.singerEncode + "$$$$";
 		String musicURL = null;
@@ -326,7 +326,7 @@ public class NetUtil {
 			}
 		}
 		
-		// Ìí¼Óµ½Êı¾İ¿â,Ä¬ÈÏÁĞ±í£¬default
+		// æ·»åŠ åˆ°æ•°æ®åº“,é»˜è®¤åˆ—è¡¨ï¼Œdefault
 		if(musicURL != null && musicURL.length()>0){
 			MusicList musicList = new MusicList(context);
 			Music music = new Music();
@@ -357,39 +357,39 @@ public class NetUtil {
 			}
 			MP3AudioHeader audioHeader = (MP3AudioHeader)f.getAudioHeader();
 			int length = audioHeader.getTrackLength();	
-			music.setDuration(String.valueOf(length)+"000");//µÃµ½µÄÊÇÃëÎªµ¥Î»µÄÊ±¼ä£¬¶øÎÒÒªµÄÊÇºÁÃëÎªµ¥Î»µÄÊ±¼ä
+			music.setDuration(String.valueOf(length)+"000");//å¾—åˆ°çš„æ˜¯ç§’ä¸ºå•ä½çš„æ—¶é—´ï¼Œè€Œæˆ‘è¦çš„æ˜¯æ¯«ç§’ä¸ºå•ä½çš„æ—¶é—´
 			
 			musicList.saveToList(music, MusicList.DEFAULT_TABLE_NAME);
 		}
 	}
 
 	/**
-	 * Í¨¹ıÏÂÔØÁ´½Ó£¬»ñµÃÊäÈëÁ÷
+	 * é€šè¿‡ä¸‹è½½é“¾æ¥ï¼Œè·å¾—è¾“å…¥æµ
 	 * 
 	 * @param urlStr
-	 *            ÏÂÔØÁ´½Ó
-	 * @return InputStream ÊäÈëÁ÷
-	 * @throws IOException
+	 *            ä¸‹è½½é“¾æ¥
+	 * @return InputStream è¾“å…¥æµ
+	 * @throws java.io.IOException
 	 */
 	private static InputStream getInputStreamFromUrl(String urlStr)
 			throws IOException {
-		URL url = null;// URL¶ÔÏó
-		HttpURLConnection urlconn = null;// HTTPµØÖ·Á¬½Ó¶ÔÏó
-		url = new URL(urlStr);// newÒ»¸öURL¶ÔÏó
-		urlconn = (HttpURLConnection) url.openConnection();// ´ò¿ªÒ»¸öÁ¬½Ó¶ÔÏó
-		urlconn.setConnectTimeout(6000);// ÉèÖÃÁ¬½Ó³¬Ê±
-		urlconn.setReadTimeout(6000);// ÉèÖÃ¶ÁÃë³¬Ê±
-		urlconn.setRequestMethod("GET");// ÉèÖÃÇëÇóÄ£Ê½
+		URL url = null;// URLå¯¹è±¡
+		HttpURLConnection urlconn = null;// HTTPåœ°å€è¿æ¥å¯¹è±¡
+		url = new URL(urlStr);// newä¸€ä¸ªURLå¯¹è±¡
+		urlconn = (HttpURLConnection) url.openConnection();// æ‰“å¼€ä¸€ä¸ªè¿æ¥å¯¹è±¡
+		urlconn.setConnectTimeout(6000);// è®¾ç½®è¿æ¥è¶…æ—¶
+		urlconn.setReadTimeout(6000);// è®¾ç½®è¯»ç§’è¶…æ—¶
+		urlconn.setRequestMethod("GET");// è®¾ç½®è¯·æ±‚æ¨¡å¼
 		return urlconn.getInputStream();
 	}
 
 	/**
-	 * ±£´æÎÄ¼ş
+	 * ä¿å­˜æ–‡ä»¶
 	 * 
 	 * @param name
-	 *            ±£´æµÄÎÄ¼şÃû
+	 *            ä¿å­˜çš„æ–‡ä»¶å
 	 * @param inputStream
-	 *            ÍøÂçÁ÷
+	 *            ç½‘ç»œæµ
 	 */
 	private void save(String absPath, InputStream inputStream) {
 		if(FileUtil._isFileExist2(absPath)){

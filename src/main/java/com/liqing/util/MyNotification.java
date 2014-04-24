@@ -16,24 +16,24 @@ public class MyNotification {
 		this.context = context;
 	}
 
-	// ÏÔÊ¾Notification
+	// æ˜¾ç¤ºNotification
 	public void showNotification(String musicname,String singer) {
-	        // ´´½¨Ò»¸öNotificationManagerµÄÒıÓÃ
+	        // åˆ›å»ºä¸€ä¸ªNotificationManagerçš„å¼•ç”¨
 	        NotificationManager notificationManager = (
 	                NotificationManager)context.getSystemService(
-	                        android.content.Context.NOTIFICATION_SERVICE);
+	                        Context.NOTIFICATION_SERVICE);
 	        
-	        // ¶¨ÒåNotificationµÄ¸÷ÖÖÊôĞÔ
+	        // å®šä¹‰Notificationçš„å„ç§å±æ€§
 	        Notification notification = new Notification(
 	                R.drawable.ic_launcher,musicname+"-"+singer,
 	                System.currentTimeMillis());
-	        // ½«´ËÍ¨Öª·Åµ½Í¨ÖªÀ¸µÄ"Ongoing"¼´"ÕıÔÚÔËĞĞ"×éÖĞ
+	        // å°†æ­¤é€šçŸ¥æ”¾åˆ°é€šçŸ¥æ çš„"Ongoing"å³"æ­£åœ¨è¿è¡Œ"ç»„ä¸­
 	        notification.flags |= Notification.FLAG_ONGOING_EVENT;
-	        // ±íÃ÷ÔÚµã»÷ÁËÍ¨ÖªÀ¸ÖĞµÄ"Çå³ıÍ¨Öª"ºó£¬´ËÍ¨Öª×Ô¶¯Çå³ı¡£
+	        // è¡¨æ˜åœ¨ç‚¹å‡»äº†é€šçŸ¥æ ä¸­çš„"æ¸…é™¤é€šçŸ¥"åï¼Œæ­¤é€šçŸ¥è‡ªåŠ¨æ¸…é™¤ã€‚
 	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-	        // ÉèÖÃÍ¨ÖªµÄÊÂ¼şÏûÏ¢
-	        CharSequence contentTitle = "MusicPlayer"; // Í¨ÖªÀ¸±êÌâ
-	        CharSequence contentText = musicname+"-"+singer; // Í¨ÖªÀ¸ÄÚÈİ
+	        // è®¾ç½®é€šçŸ¥çš„äº‹ä»¶æ¶ˆæ¯
+	        CharSequence contentTitle = "MusicPlayer"; // é€šçŸ¥æ æ ‡é¢˜
+	        CharSequence contentText = musicname+"-"+singer; // é€šçŸ¥æ å†…å®¹
 	        
 	        Intent notificationIntent = new Intent(context,MainActivity.class);
 	        notificationIntent.setAction(Intent.ACTION_MAIN);
@@ -42,14 +42,14 @@ public class MyNotification {
 	         context, 0, notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
 	        notification.setLatestEventInfo(
 	         context, contentTitle, contentText, contentIntent);
-	        // °ÑNotification´«µİ¸øNotificationManager
+	        // æŠŠNotificationä¼ é€’ç»™NotificationManager
 	        notificationManager.notify(0, notification);
 	    }
 
-	// È¡ÏûÍ¨Öª
+	// å–æ¶ˆé€šçŸ¥
 	public void cancelNotification() {
 		NotificationManager notificationManager = (NotificationManager) context
-				.getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+				.getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.cancel(0);
 	}
 }

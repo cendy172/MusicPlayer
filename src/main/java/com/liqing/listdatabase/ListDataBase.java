@@ -11,30 +11,30 @@ import com.liqing.bean.MusicList;
 
 public class ListDataBase {
 
-	// Êı¾İ¿âÃû
+	// æ•°æ®åº“å
 	public static final String DB_NAME = "ListDatabase.db";
 
-	// ÁĞÃû
-	public static final String KEY_ID = "_id"; // Î¨Ò»ĞÔID
+	// åˆ—å
+	public static final String KEY_ID = "_id"; // å”¯ä¸€æ€§ID
 
-	public static final String LIST_NAME = "listname";// ÓÃÓÚ±£´æÁĞ±íÃûµÄÁĞÃû,ÕâĞ©ÁĞ±íÃûÍ¬Ê±×÷ÎªÆäËû±íµÄ±íÃû
+	public static final String LIST_NAME = "listname";// ç”¨äºä¿å­˜åˆ—è¡¨åçš„åˆ—å,è¿™äº›åˆ—è¡¨ååŒæ—¶ä½œä¸ºå…¶ä»–è¡¨çš„è¡¨å
 
 	public static final String TABLE_NAME = "ListName";
 	public static final String DEFAULT_TABLE_NAME = "default_list";
 
 	private static final int DB_VERSION = 1;
 
-	// ±£´æ¸÷ÖÖÁĞ±íµÄÊı¾İ¿â
+	// ä¿å­˜å„ç§åˆ—è¡¨çš„æ•°æ®åº“
 	private SQLiteDatabase listDatabase;
 	private ContentValues contentValues = null;
 
-	// ±¾µØContext¶ÔÏó
+	// æœ¬åœ°Contextå¯¹è±¡
 	private Context context = null;
 
-	// ¸¨Öú²Ù×÷Êı¾İ¿âµÄ¶ÔÏó
+	// è¾…åŠ©æ“ä½œæ•°æ®åº“çš„å¯¹è±¡
 	private static ListSQLiteOpenHelper listSQLiteOpenHelper = null;
 
-	/** µ¥ÀıÄ£Ê½ **/
+	/** å•ä¾‹æ¨¡å¼ **/
 	static synchronized ListSQLiteOpenHelper getInstance(Context context) {
 		if (listSQLiteOpenHelper == null) {
 			listSQLiteOpenHelper = new ListSQLiteOpenHelper(context);
@@ -48,22 +48,22 @@ public class ListDataBase {
 			super(context, DB_NAME, null, DB_VERSION);
 		}
 
-		/* ´´½¨Ò»¸ö±í */
+		/* åˆ›å»ºä¸€ä¸ªè¡¨ */
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			// ÏÈ´´½¨Ò»¸öÁĞÃû±ítablename×Ö¶ÎÊÇ¶ÔÓ¦ÁĞ±íÃûµÄ±íÃû,
+			// å…ˆåˆ›å»ºä¸€ä¸ªåˆ—åè¡¨tablenameå­—æ®µæ˜¯å¯¹åº”åˆ—è¡¨åçš„è¡¨å,
 			String createTable = "create table " + TABLE_NAME + " ( " + KEY_ID
 					+ " integer primary key , " + LIST_NAME + " text unique, "
 					+ "tablename" + " text unique" + " )";
 			db.execSQL(createTable);
-			// ´´½¨Ò»¸ö×î½ü²¥·Å±í
+			// åˆ›å»ºä¸€ä¸ªæœ€è¿‘æ’­æ”¾è¡¨
 			createTable = "create table recent ( " + KEY_ID
 					+ " integer primary key, " + Music.TITLE_KEY + " text, "
 					+ Music.ARTIST + " text, " + Music.PATH + " text, "
 					+ Music.DURATION + " text, " + Music.ALBUM_ART + " text ) ";
 			db.execSQL(createTable);
 
-			// ´´½¨Ò»¸öÄ¬ÈÏÁĞ±í£¬·ÅÖÃ³ÌĞòÏÂÔØµÄ¸èÇú
+			// åˆ›å»ºä¸€ä¸ªé»˜è®¤åˆ—è¡¨ï¼Œæ”¾ç½®ç¨‹åºä¸‹è½½çš„æ­Œæ›²
 			createTable = "create table " + DEFAULT_TABLE_NAME + " ( " + KEY_ID
 					+ " integer primary key, " + Music.TITLE_KEY + " text, "
 					+ Music.ARTIST + " text, " + Music.PATH + " text, "
@@ -72,7 +72,7 @@ public class ListDataBase {
 			db.execSQL(createTable);
 		}
 
-		/* Éı¼¶Êı¾İ¿â */
+		/* å‡çº§æ•°æ®åº“ */
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			db.execSQL("drop table if exists notes");
@@ -80,20 +80,20 @@ public class ListDataBase {
 		}
 	}
 
-	/* ¹¹Ôìº¯Êı-È¡µÃContext */
+	/* æ„é€ å‡½æ•°-å–å¾—Context */
 	public ListDataBase(Context context) {
 		this.context = context;
 		this.contentValues = new ContentValues();
 		open();
 	}
 
-	// ´ò¿ªÊı¾İ¿â£¬·µ»ØÊı¾İ¿â¶ÔÏó
+	// æ‰“å¼€æ•°æ®åº“ï¼Œè¿”å›æ•°æ®åº“å¯¹è±¡
 	public void open() {
 		listSQLiteOpenHelper = getInstance(context);
 		this.listDatabase = listSQLiteOpenHelper.getWritableDatabase();
 	}
 
-	// ¹Ø±ÕÊı¾İ¿â
+	// å…³é—­æ•°æ®åº“
 	public void close() {
 		if (listSQLiteOpenHelper != null) {
 			listSQLiteOpenHelper.close();
@@ -101,7 +101,7 @@ public class ListDataBase {
 		}
 	}
 
-	// ´´½¨±í
+	// åˆ›å»ºè¡¨
 	public void createTable(String tableName) {
 		String create = "create table " + tableName + " ( " + KEY_ID
 				+ " integer primary key, " + Music.TITLE_KEY + " text, "
@@ -111,7 +111,7 @@ public class ListDataBase {
 		this.listDatabase.execSQL(create);
 	}
 
-	// Ìí¼ÓÁĞ±íÃû
+	// æ·»åŠ åˆ—è¡¨å
 	public void insertMusicList(String listname, String tablename) {
 		contentValues.put(LIST_NAME, listname);
 		contentValues.put("tablename", tablename);
@@ -119,7 +119,7 @@ public class ListDataBase {
 		contentValues.clear();
 	}
 
-	// Ìí¼Ó¼ÇÂ¼
+	// æ·»åŠ è®°å½•
 	public void insertRecord(String tableName, Music music) {
 		contentValues.put(Music.TITLE_KEY, music.getMusicName());
 		contentValues.put(Music.ARTIST, music.getArtist());
@@ -135,19 +135,19 @@ public class ListDataBase {
 		contentValues.clear();
 	}
 
-	// É¾³ı±í
+	// åˆ é™¤è¡¨
 	public void deleteTable(String tableName) {
 		this.listDatabase.execSQL("drop table " + tableName);
 	}
 
-	// É¾³ı¼ÇÂ¼
+	// åˆ é™¤è®°å½•
 	public boolean deleteRecord(String tableName, int id) {
 		boolean isDelete = this.listDatabase.delete(tableName, Music.KEY_ID
 				+ "=?", new String[] { String.valueOf(id) }) > 0;
 		return isDelete;
 	}
 
-	// ²é¿´ËùÓĞÁĞ±íÃû
+	// æŸ¥çœ‹æ‰€æœ‰åˆ—è¡¨å
 	public Cursor getAllListName() {
 		Cursor temp = this.listDatabase.query(TABLE_NAME, null, null, null,
 				null, null, Music.KEY_ID);
@@ -173,7 +173,7 @@ public class ListDataBase {
 		return result;
 	}
 
-	// »ñµÃÒ»ĞĞ¼ÇÂ¼
+	// è·å¾—ä¸€è¡Œè®°å½•
 	public Music getOneMusic(String listname, int id) {
 		Cursor temp = listDatabase.query(getTableName(listname), null,
 				Music.KEY_ID + "=?", new String[] { String.valueOf(id) }, null,
@@ -193,7 +193,7 @@ public class ListDataBase {
 		return null;
 	}
 
-	// ²é¿´Ä³±íÄÚËùÓĞµÄ¸èÇú
+	// æŸ¥çœ‹æŸè¡¨å†…æ‰€æœ‰çš„æ­Œæ›²
 	public Cursor getAllMusic(String tablename) {
 		Cursor cursor = null;
 		if (tablename.equals("recent")) {
@@ -219,7 +219,7 @@ public class ListDataBase {
 		return 0;
 	}
 
-	// ²é¿´Ä³ÁĞ±íÊÇ·ñ´æÔÚ»òÕßÄ³ÏîÊÇ·ñ´æÔÚ
+	// æŸ¥çœ‹æŸåˆ—è¡¨æ˜¯å¦å­˜åœ¨æˆ–è€…æŸé¡¹æ˜¯å¦å­˜åœ¨
 	public boolean hasExistListName(String listname, String name) {
 		String tablename = null;
 		Cursor cursor = null;
@@ -229,12 +229,12 @@ public class ListDataBase {
 					new String[] { name }, null, null, null);
 		}
 		if (listname.equals(TABLE_NAME)) {
-			// ÁĞ±í±í
+			// åˆ—è¡¨è¡¨
 			tablename = TABLE_NAME;
 			cursor = this.listDatabase.query(tablename, null, LIST_NAME + "=?",
 					new String[] { name }, null, null, null);
 		} else if (listname.equals("recent")) {
-			// ×î½ü²¥·ÅÁĞ±í
+			// æœ€è¿‘æ’­æ”¾åˆ—è¡¨
 			tablename = "recent";
 			cursor = this.listDatabase.query(tablename, null, Music.TITLE_KEY
 					+ "=?", new String[] { name }, null, null, null);
@@ -247,7 +247,7 @@ public class ListDataBase {
 		return cursor.getCount() > 0;
 	}
 
-	// ¸ü¸ÄÁĞ±íÃû
+	// æ›´æ”¹åˆ—è¡¨å
 	public boolean updateListName(String fromName, String toName) {
 		contentValues.put(LIST_NAME, toName);
 		int result = this.listDatabase.update(TABLE_NAME, contentValues,

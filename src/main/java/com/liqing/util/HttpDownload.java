@@ -11,7 +11,7 @@ import java.net.URL;
 public class HttpDownload {
 	
 	/**
-	 * ¸ù¾İURLÏÂÔØÎÄ¼ş¡£
+	 * æ ¹æ®URLä¸‹è½½æ–‡ä»¶ã€‚
 	 * @param url
 	 * @return
 	 */
@@ -20,7 +20,7 @@ public class HttpDownload {
 		String line = null;
 		InputStream inputstream = null;
 		InputStreamReader inputStreamReader = null;
-		BufferedReader buffer = null;//Ê¹ÓÃIOÁ÷¶ÁÈ¡Êı¾İ
+		BufferedReader buffer = null;//ä½¿ç”¨IOæµè¯»å–æ•°æ®
 		try {
 			inputstream = getInputStreamFromUrl(url);
 			inputStreamReader = new InputStreamReader(inputstream);
@@ -35,7 +35,7 @@ public class HttpDownload {
 		} finally {
 			if (buffer != null) {
 				try {
-					buffer.close();//¹Ø±ÕIOÁ÷
+					buffer.close();//å…³é—­IOæµ
 				} catch (IOException e) {
 					e.printStackTrace();
 				} finally {
@@ -54,7 +54,7 @@ public class HttpDownload {
 	}
 
 	/**
-	 * ¸Ãº¯Êı·µ»ØÕûĞÎ -1£º´ú±íÏÂÔØÎÄ¼ş³ö´í 0£º´ú±íÏÂÔØÎÄ¼ş³É¹¦ 1£º´ú±íÎÄ¼şÒÑ¾­´æÔÚ
+	 * è¯¥å‡½æ•°è¿”å›æ•´å½¢ -1ï¼šä»£è¡¨ä¸‹è½½æ–‡ä»¶å‡ºé”™ 0ï¼šä»£è¡¨ä¸‹è½½æ–‡ä»¶æˆåŠŸ 1ï¼šä»£è¡¨æ–‡ä»¶å·²ç»å­˜åœ¨
 	 */
 	public int downLoadFile(String urlStr, String path, String finalFileName) {
 		InputStream inputStream = null;
@@ -85,13 +85,13 @@ public class HttpDownload {
 
 	private static InputStream getInputStreamFromUrl(String urlStr)
 			throws IOException {
-		URL url = null;//URL¶ÔÏó
-		HttpURLConnection urlconn = null;//HTTPµØÖ·Á¬½Ó¶ÔÏó
-		url = new URL(urlStr);//newÒ»¸öURL¶ÔÏó
-		urlconn = (HttpURLConnection) url.openConnection();//´ò¿ªÒ»¸öÁ¬½Ó¶ÔÏó
-		urlconn.setConnectTimeout(6000);//ÉèÖÃÁ¬½Ó³¬Ê±
-		urlconn.setReadTimeout(6000);//ÉèÖÃ¶ÁÃë³¬Ê±
-		urlconn.setRequestMethod("GET");//ÉèÖÃÇëÇóÄ£Ê½
+		URL url = null;//URLå¯¹è±¡
+		HttpURLConnection urlconn = null;//HTTPåœ°å€è¿æ¥å¯¹è±¡
+		url = new URL(urlStr);//newä¸€ä¸ªURLå¯¹è±¡
+		urlconn = (HttpURLConnection) url.openConnection();//æ‰“å¼€ä¸€ä¸ªè¿æ¥å¯¹è±¡
+		urlconn.setConnectTimeout(6000);//è®¾ç½®è¿æ¥è¶…æ—¶
+		urlconn.setReadTimeout(6000);//è®¾ç½®è¯»ç§’è¶…æ—¶
+		urlconn.setRequestMethod("GET");//è®¾ç½®è¯·æ±‚æ¨¡å¼
 		return urlconn.getInputStream();
 	}
 }

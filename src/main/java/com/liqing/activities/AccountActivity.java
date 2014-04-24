@@ -72,7 +72,7 @@ public class AccountActivity extends Activity {
 				} else if (v.getId() == loginButton.getId()) {
 					if (userNameEditText.getText().toString().equals("")
 							|| passwordEditText.getText().toString().equals("")) {
-						Toast.makeText(AccountActivity.this, "ÓÃ»§ÃûºÍÃÜÂë²»ÄÜÎª¿Õ",
+						Toast.makeText(AccountActivity.this, "ç”¨æˆ·åå’Œå¯†ç ä¸èƒ½ä¸ºç©º",
 								Toast.LENGTH_SHORT).show();
 					} else {
 						login();
@@ -109,13 +109,13 @@ public class AccountActivity extends Activity {
 			HttpsURLConnection httpsURLConnection = (HttpsURLConnection) loginConnection;
 			int responseCode = httpsURLConnection.getResponseCode();
 			if (responseCode == HttpsURLConnection.HTTP_OK) {
-				// ·µ»ØÓÃ»§Ãû
+				// è¿”å›ç”¨æˆ·å
 				accountShowTextView.setText("username");
 				MainActivity.userName = "username";
 				loginFormLayout.setVisibility(View.GONE);
 			} else {
 				this.passwordEditText.setText("");
-				Toast.makeText(this, "µÇÂ¼Ê§°Ü£¡ÇëÊäÈëÕıÈ·µÄÓÃ»§ÃûºÍÃÜÂë!", Toast.LENGTH_SHORT)
+				Toast.makeText(this, "ç™»å½•å¤±è´¥ï¼è¯·è¾“å…¥æ­£ç¡®çš„ç”¨æˆ·åå’Œå¯†ç !", Toast.LENGTH_SHORT)
 						.show();
 			}
 		} catch (Exception ex) {

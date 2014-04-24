@@ -75,15 +75,15 @@ public class EqualizerActivity extends Activity {
 		
 	}
 	
-	private OnCheckedChangeListener soundsCheckedListener = new RadioGroup.OnCheckedChangeListener() {
+	private OnCheckedChangeListener soundsCheckedListener = new OnCheckedChangeListener() {
 		
 		/*
         Normal
         Classical
         Dance
         Flat
-        Folk Ãñ×å
-        Heavy Metal ÖØ½ğÊô
+        Folk æ°‘æ—
+        Heavy Metal é‡é‡‘å±
         Hip Hop
         Jazz
         Pop

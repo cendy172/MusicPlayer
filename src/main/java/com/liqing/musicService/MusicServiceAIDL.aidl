@@ -1,16 +1,16 @@
 package com.liqing.musicService;
 
 interface MusicServiceAIDL{
-	void playMusic(int id);//²¥·Å
-	void nextMusic();//ÏÂÒ»Çú
-	void lastMusic();//ÉÏÒ»Çú
-	void stopMusic();//Í£Ö¹
-	void pauseMusic();//ÔİÍ£
-	void setVolume(int leftVolume,int rightVolume);//ÉèÖÃÉùÒô
-	int getDuration();//¸èÇú×ÜÊ±¼ä
-	int getCurrentTime();//µ±Ç°²¥·ÅÊ±¼ä
-	void setCurrent(int cur);//¿ì½ø£¬¿ìÍË¡£¡£
-	boolean isPlaying();//ÊÇ·ñ´¦ÓÚ²¥·Å×´Ì¬
+	void playMusic(int id);//æ’­æ”¾
+	void nextMusic();//ä¸‹ä¸€æ›²
+	void lastMusic();//ä¸Šä¸€æ›²
+	void stopMusic();//åœæ­¢
+	void pauseMusic();//æš‚åœ
+	void setVolume(int leftVolume,int rightVolume);//è®¾ç½®å£°éŸ³
+	int getDuration();//æ­Œæ›²æ€»æ—¶é—´
+	int getCurrentTime();//å½“å‰æ’­æ”¾æ—¶é—´
+	void setCurrent(int cur);//å¿«è¿›ï¼Œå¿«é€€
+	boolean isPlaying();//æ˜¯å¦å¤„äºæ’­æ”¾çŠ¶æ€
 	void releaseMediaPlayer();
 	void setStart();
 	void setEQ(int preset);

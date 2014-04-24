@@ -77,7 +77,7 @@ public class ExListView extends ExpandableListView implements OnScrollListener {
 
 				if (_groupLayout != null) {
 					_groupLayout.removeAllViews();
-					_groupLayout.setVisibility(GONE);// 这里设置Gone 为了不让它遮挡后面header
+					_groupLayout.setVisibility(GONE);// 杩欓噷璁剧疆Gone 涓轰簡涓嶈瀹冮伄鎸″悗闈eader
 				}
 			} else if (groupPos > _groupIndex) {
 				final FrameLayout fl = (FrameLayout) getParent();

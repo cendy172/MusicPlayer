@@ -7,19 +7,19 @@ import java.io.*;
 public class FileUtil
 {
 
-	public final static String ALBUMPATH = "musicplayer/album/";// ÏÂÔØµÄ×¨¼­ÁĞ±íµÄÂ·¾¶
-	public final static String SINGERPATH = "musicplayer/singer/";// ÏÂÔØµÄ¸èÊÖÍ·ÏñµÄÂ·¾¶
-	public final static String MUSICPATH = "musicplayer/music/";// ÏÂÔØµÄÒôÀÖ´æ´¢µÄÂ·¾¶
+	public final static String ALBUMPATH = "musicplayer/album/";// ä¸‹è½½çš„ä¸“è¾‘åˆ—è¡¨çš„è·¯å¾„
+	public final static String SINGERPATH = "musicplayer/singer/";// ä¸‹è½½çš„æ­Œæ‰‹å¤´åƒçš„è·¯å¾„
+	public final static String MUSICPATH = "musicplayer/music/";// ä¸‹è½½çš„éŸ³ä¹å­˜å‚¨çš„è·¯å¾„
 
 	/**
-	 * µÃµ½µ±Ç°Íâ²¿´æ´¢Éè±¸µÄÄ¿Â¼
+	 * å¾—åˆ°å½“å‰å¤–éƒ¨å­˜å‚¨è®¾å¤‡çš„ç›®å½•
 	 */
 	public static String SDCardRoot = Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
 
 	/**
-	 * ÔÚSD¿¨ÉÏ´´½¨ÎÄ¼ş
+	 * åœ¨SDå¡ä¸Šåˆ›å»ºæ–‡ä»¶
 	 * 
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	public static File createFileInSDCard(String fileName, String dir) throws IOException
 	{
@@ -33,9 +33,9 @@ public class FileUtil
 	}
 
 	/**
-	 * ÔÚSD¿¨ÉÏ´´½¨ÎÄ¼ş
+	 * åœ¨SDå¡ä¸Šåˆ›å»ºæ–‡ä»¶
 	 * 
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	public static File createFileInSDCard(String absPath) throws IOException
 	{
@@ -49,7 +49,7 @@ public class FileUtil
 	}
 
 	/**
-	 * ÔÚSD¿¨ÉÏ´´½¨Ä¿Â¼
+	 * åœ¨SDå¡ä¸Šåˆ›å»ºç›®å½•
 	 * 
 	 * @param dirName
 	 */
@@ -61,14 +61,14 @@ public class FileUtil
 	}
 
 	/**
-	 * É¾³ıSD¿¨ÉÏµÄÎÄ¼ş
+	 * åˆ é™¤SDå¡ä¸Šçš„æ–‡ä»¶
 	 * 
 	 * @param dir
-	 *            ÎÄ¼ş¼ĞÄ¿Â¼(ÒÑ°üº¬¸ùÄ¿Â¼)
+	 *            æ–‡ä»¶å¤¹ç›®å½•(å·²åŒ…å«æ ¹ç›®å½•)
 	 * @param fileName
-	 *            ÎÄ¼şÃû
+	 *            æ–‡ä»¶å
 	 * @return
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	public static boolean deleteFile(String dir, String fileName) throws IOException
 	{
@@ -77,7 +77,7 @@ public class FileUtil
 	}
 
 	/**
-	 * É¾³ı_dataÂ·¾¶µÄÎÄ¼ş
+	 * åˆ é™¤_dataè·¯å¾„çš„æ–‡ä»¶
 	 * 
 	 * @param _data
 	 * @return
@@ -99,7 +99,7 @@ public class FileUtil
 	}
 
 	/**
-	 * ÅĞ¶ÏSD¿¨ÉÏµÄÎÄ¼şÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­SDå¡ä¸Šçš„æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	 */
 	public static boolean isFileExist(String fileName, String path)
 	{
@@ -116,7 +116,7 @@ public class FileUtil
 	/**
 	 * 
 	 * @param path
-	 *            Â·¾¶¼ÓÎÄ¼şÃû¼Óºó×º
+	 *            è·¯å¾„åŠ æ–‡ä»¶ååŠ åç¼€
 	 * @return
 	 */
 	public static boolean _isFileExist2(String path)
@@ -126,7 +126,7 @@ public class FileUtil
 	}
 
 	/**
-	 * ÅĞ¶ÏSD¿¨ÉÏµÄÎÄ¼ş¼ĞÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­SDå¡ä¸Šçš„æ–‡ä»¶å¤¹æ˜¯å¦å­˜åœ¨
 	 */
 	public static boolean isFilePathExist(String path)
 	{
@@ -135,7 +135,7 @@ public class FileUtil
 	}
 
 	/**
-	 * ÅĞ¶ÏSD¿¨ÉÏµÄÎÄ¼ş¼ĞÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­SDå¡ä¸Šçš„æ–‡ä»¶å¤¹æ˜¯å¦å­˜åœ¨
 	 */
 	public static boolean _isFilePathExist(String abspath)
 	{
@@ -149,7 +149,7 @@ public class FileUtil
 	}
 
 	/**
-	 * ¸üĞÂÎÄ¼şÃû
+	 * æ›´æ–°æ–‡ä»¶å
 	 * 
 	 * @param file
 	 * @param finalFileName
@@ -162,7 +162,7 @@ public class FileUtil
 	}
 
 	/**
-	 * ½«Ò»¸öĞ´ÈëÁ÷ÀïÃæµÄÊı¾İĞ´Èëµ½SD¿¨ÖĞ
+	 * å°†ä¸€ä¸ªå†™å…¥æµé‡Œé¢çš„æ•°æ®å†™å…¥åˆ°SDå¡ä¸­
 	 */
 	public static File writeToSDFromInput(String abspath, InputStream inPutStream)
 	{
@@ -171,12 +171,12 @@ public class FileUtil
 		try
 		{
 			file = createFileInSDCard(abspath);
-			outPutStream = new FileOutputStream(file);// ´«Ò»¸öfile¶ÔÏóĞ´ÈëÁ÷Àï
+			outPutStream = new FileOutputStream(file);// ä¼ ä¸€ä¸ªfileå¯¹è±¡å†™å…¥æµé‡Œ
 			byte buffer[] = new byte[10 * 1024];
 			int temp;
 			while ((temp = inPutStream.read(buffer)) != -1)
 			{
-				outPutStream.write(buffer, 0, temp);// Ã¿¶Á³öÒ»ĞĞ
+				outPutStream.write(buffer, 0, temp);// æ¯è¯»å‡ºä¸€è¡Œ
 			}
 			outPutStream.flush();
 		} catch (Exception e)
