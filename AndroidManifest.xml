@@ -34,7 +34,6 @@
         <activity android:name=".activities.AccountActivity" />
         <activity android:name=".activities.RecentActivity" />
         <activity android:name=".activities.MusicListActivity"  android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".activities.ArtistActivity" />
 		<activity android:name=".activities.FileSystemActivity" />
 
         <service android:name=".musicService.MusicService">
